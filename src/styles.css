@@ -1,1 +1,72 @@
 /* You can add global styles to this file, and also import other style files */
+nav a {
+    display: block;
+    padding: 10px;
+}
+nav a.active {
+    font-weight: 700;
+    color: rgba(0, 109, 175, 0.904);
+    background-color: #f1f1f1;
+    border-radius: 2px;
+}
+.lg-link {
+    font-size: 40px;
+    text-decoration: underline;
+}
+.outlet-page-content {
+    margin-top: 1%;
+}
+/* .list-side-table {
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px #717171;
+} */
+
+.employee-profile-img{
+    width: 100%;
+    border-radius: 5%;
+    border: 4px solid #28a745;
+}
+
+/* Login Form Box */
+.loginform-box {
+    margin-top: 10%;
+}
+.loginform-box input {
+    height: 45px;
+    margin-top: 5px;
+}
+
+/* Custom Paragraph */
+.long-copy {
+    line-height: 145%;
+    width: 70%;
+    text-align: center;
+    margin: 0 auto;
+    margin-bottom: 1%;
+    letter-spacing: 1px;
+}
+
+/* All Form Box */
+.form-box, .content-box{
+    margin-top: 1%;
+}
+.form-box h4 {
+    letter-spacing: 1px;
+    font-size: 1.7em;
+    font-weight: 500;
+    font-family: sans-serif;
+}
+.form-box input {
+    height: 45px;
+    margin-top: 5px;
+}
+.form-box .checkbox input {
+    height: 20px;
+    width: 20px;
+}
+
+/*  */
+.selected {
+    background-color: #0d597a !important;
+    color: white;
+  }

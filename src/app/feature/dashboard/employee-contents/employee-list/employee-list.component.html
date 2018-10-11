@@ -1,0 +1,76 @@
+<div class="row content-box">
+
+  <div class="col-md-4 border-right">
+    <div class="list-side-table">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <th>S.N</th>
+          <th>Full Name</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let employee of employees">
+            <td>{{employee.id}}</td>
+            <td>{{employee.fullName}}</td>
+            <!-- <td><button (click)="onEmployeeSelect(employee)" class="btn btn-sm btn-secondary">View</button></td> -->
+            <td><a routerLink="/employees/details/{{employee.id}}" routerLinkActive="active">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+
+    <!-- Show Employee Details -->
+    <div *ngIf="isEmployeeSelected" class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="https://images.pexels.com/photos/295821/pexels-photo-295821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            class="employee-profile-img" alt="profile image" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-head">
+          <h5><span class="font-weight-bold text-success">Alexia Kasey</span>
+            <span class="font-italic pl-2" style="font-size:0.8em;">alexia7kasey</span>
+            <button class="btn btn-success ml-4">Edit Profile</button></h5>
+          <h6>Full Stack Developer</h6>
+          <p>Joined Date : <span class="font-weight-bold">2018/07/25</span></p>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <span class="nav-link active">About</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Employee About -->
+        <div class="row font-italic mt-3">
+          <div class="col-md-6 border-right">
+            <p>Employee Id: 1</p>
+            <p>Full Name: Alexia Kasey</p>
+            <p>Username: alexia7kasey</p>
+            <p>Phone No.: 111-111-1111</p>
+            <p>Email: aa@gmail.com</p>
+            <p>Role: USER_ROLE</p>
+            <p>Status: Active</p>
+          </div>
+          <div class="col-md-6">
+            <!-- Employee Under Supervision -->
+            <div class="font-italic">
+              <button class="btn btn-secondary">Supervising &#8595;</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Show Empty Details -->
+    <div *ngIf="!isEmployeeSelected">
+      <h4>Please Select Employee</h4>
+    </div>
+
+  </div>
+
+</div>
