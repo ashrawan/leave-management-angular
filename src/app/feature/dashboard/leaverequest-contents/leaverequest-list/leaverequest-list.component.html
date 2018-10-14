@@ -1,0 +1,61 @@
+<div class="row content-box">
+
+  <div class="col-md-4 border-right">
+    <div class="list-side-table">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <th>S.N</th>
+          <th>Employee</th>
+          <th>Leave Type</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leaverequest of leaveRequests; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{leaverequest.employee.fullName}}</td>
+            <td>{{leaverequest.leaveType.type_name}}</td>
+            <td><a routerLink="/home/leaverequests/details/{{leaverequest.id}}" routerLinkActive="active">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+
+    <!-- Show Employee Details -->
+    <div *ngIf="isLeaveRequestSelected" class="row">
+      
+      <div class="col-md-6 offset-md-1">
+        <div class="profile-head">
+          <h5><span class="font-weight-bold text-success">{{selectedLeaveRequest.employee.fullName}}</span>
+            <button class="btn btn-success ml-4">Edit </button></h5>
+          <p>Created Date : <span class="font-weight-bold">2018/07/25</span></p>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <span class="nav-link active">About</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Employee About -->
+        <div class="row font-italic mt-3">
+          <div class="col-md-6">
+            <p>LeaveRequest Id: 1</p>
+            <p>Employee Name: Alexia</p>
+            <p>Leave Type: Floating</p>
+            <p>Status: Active</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Show Empty Details -->
+    <div *ngIf="!isLeaveRequestSelected">
+      <h4>Please Select Leave Request</h4>
+    </div>
+
+  </div>
+
+</div>

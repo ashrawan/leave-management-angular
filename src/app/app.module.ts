@@ -1,3 +1,4 @@
+import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 
@@ -15,10 +16,10 @@ import { FeatureModule } from './feature/feature.module';
     CoreModule,
     BrowserModule,
     AppRoutingModule,
+    RouterModule,
     SharedModule,
     FeatureModule,
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

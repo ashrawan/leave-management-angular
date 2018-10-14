@@ -1,0 +1,8 @@
+/* Login Form Box */
+.loginform-box {
+    margin-top: 10%;
+}
+.loginform-box input {
+    height: 45px;
+    margin-top: 5px;
+}

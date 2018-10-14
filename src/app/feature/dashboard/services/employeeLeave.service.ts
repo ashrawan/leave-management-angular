@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { throwError, of } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Constant } from '../constant/constant';
 import { EmployeeLeave } from '../model/EmployeeLeave';
@@ -16,7 +15,7 @@ export class EmployeeLeaveService {
     return throwError(error);
   }
 
-  getAllEmployeeLeaves(): Observable<EmployeeLeave[]> {
+  getAllEmployeeLeaves(): Observable<any> {
     return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + "/rest/employee-leaves")
       .pipe(catchError(this.errorHandler));
   }

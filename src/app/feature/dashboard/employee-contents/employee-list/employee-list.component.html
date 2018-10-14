@@ -9,11 +9,11 @@
           <th>Options</th>
         </thead>
         <tbody>
-          <tr *ngFor="let employee of employees">
-            <td>{{employee.id}}</td>
+          <tr *ngFor="let employee of employees; let i = index">
+            <td>{{i+1}}</td>
             <td>{{employee.fullName}}</td>
             <!-- <td><button (click)="onEmployeeSelect(employee)" class="btn btn-sm btn-secondary">View</button></td> -->
-            <td><a routerLink="/employees/details/{{employee.id}}" routerLinkActive="active">View</a></td>
+            <td><a routerLink="/home/employees/details/{{employee.id}}" routerLinkActive="active">View</a></td>
           </tr>
         </tbody>
       </table>
@@ -32,8 +32,8 @@
       </div>
       <div class="col-md-8">
         <div class="profile-head">
-          <h5><span class="font-weight-bold text-success">Alexia Kasey</span>
-            <span class="font-italic pl-2" style="font-size:0.8em;">alexia7kasey</span>
+          <h5><span class="font-weight-bold text-success">{{selectedEmployee.fullName}}</span>
+            <span class="font-italic pl-2" style="font-size:0.8em;">{{selectedEmployee.username}}</span>
             <button class="btn btn-success ml-4">Edit Profile</button></h5>
           <h6>Full Stack Developer</h6>
           <p>Joined Date : <span class="font-weight-bold">2018/07/25</span></p>

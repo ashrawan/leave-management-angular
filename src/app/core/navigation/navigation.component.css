@@ -1,0 +1,14 @@
+nav a {
+    display: block;
+    padding: 10px;
+}
+nav a.active {
+    font-weight: 700;
+    color: rgba(0, 109, 175, 0.904);
+    background-color: #f1f1f1;
+    border-radius: 2px;
+}
+.lg-link {
+    font-size: 40px;
+    text-decoration: underline;
+}

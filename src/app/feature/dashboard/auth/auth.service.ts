@@ -29,6 +29,8 @@ export class AuthService {
 
 
   loginUser(user) {
+    localStorage.removeItem("token");
+    localStorage.removeItem("access_token");
 
     let data = {
       "username": user.username,
@@ -55,9 +57,11 @@ export class AuthService {
         localStorage.setItem("token", res.access_token)
         localStorage.setItem("refreshToken", res.refresh_token)
         return true;
-        // this._router.navigate(['/user'])
       },
         err => {console.log("refresh token also results into error ",err); this.logout()});
+    }else {
+      console.log("Cant use Refresh token");
+      this._router.navigate(['/']);
     }
   }
 
@@ -71,7 +75,7 @@ export class AuthService {
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     this._router.navigate(['/'])
-    location.reload();
+    // location.reload();
   }
 
 }

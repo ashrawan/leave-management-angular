@@ -1,10 +1,11 @@
-<ul class="nav nav-tabs">
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/home/employees/details/0" routerLinkActive="active">List Employee</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" routerLink="/home/employees/add" routerLinkActive="active">Add Employee</a>
-  </li>
-</ul>
-
-<router-outlet></router-outlet>
+<div class="content-box">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home/employees/details/0" routerLinkActive="active">All Employees</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" routerLink="/home/employees/add" routerLinkActive="active">New Employee</a>
+    </li>
+  </ul>
+  <router-outlet></router-outlet>
+</div>

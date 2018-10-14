@@ -1,0 +1,58 @@
+<div class="row content-box">
+
+  <div class="col-md-4 border-right">
+    <div class="list-side-table">
+      <table class="table table-bordered">
+        <thead class="thead-light">
+          <th>S.N</th>
+          <th>Leave Type</th>
+          <th>Options</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let leavetype of leaveTypes; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{leavetype.type_name}}</td>
+            <td><a routerLink="/home/leavetypes/details/{{leavetype.id}}" routerLinkActive="active">View</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+
+    <!-- Show Employee Details -->
+    <div *ngIf="isLeaveTypeSelected" class="row">
+      
+      <div class="col-md-6 offset-md-1">
+        <div class="profile-head">
+          <h5><span class="font-weight-bold text-success">{{selectedleaveType.type_name}}</span>
+            <button class="btn btn-success ml-4">Edit </button></h5>
+          <p>Created Date : <span class="font-weight-bold">2018/07/25</span></p>
+          <ul class="nav nav-tabs">
+            <li class="nav-item">
+              <span class="nav-link active">About</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Employee About -->
+        <div class="row font-italic mt-3">
+          <div class="col-md-6">
+            <p>LeaveType Id: 1</p>
+            <p>Type Name: Floating Leave</p>
+            <p>Status: Active</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Show Empty Details -->
+    <div *ngIf="!isLeaveTypeSelected">
+      <h4>Please Select Leave Type</h4>
+    </div>
+
+  </div>
+
+</div>

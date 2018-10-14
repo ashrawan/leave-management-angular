@@ -1,0 +1,42 @@
+<form #leaveForm="ngForm" (ngSubmit)="createLeaveRequest(leaveForm)" class="mx-auto col-md-6 offset-md-3 form-box">
+
+  <div *ngIf="!!leave_req_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{leave_req_msg}}</div>
+
+  <h4 class="text-center mb-3"> Request For Leave </h4>
+
+  <div class="form-group row">
+    <label for="leaveType" class="col-sm-2 col-form-label">Leave Type&nbsp;<span class="text-danger">* </span></label>
+    <div class="col-sm-10">
+      <ng-select [items]="leaveTypes | async" bindLabel="type_name" bindValue="id" placeholder="Select Leave Type" [(ngModel)]="selectedLeaveType"
+        [ngModelOptions]="{standalone: true}">
+      </ng-select>
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="leaveReason" class="col-sm-2 col-form-label">Leave Reason&nbsp;<span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+      <input type="text" id="leaveReason" name="leaveReason" class="form-control" placeholder="Leave Reason" ngModel
+        autofocus minlength="2" required />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="leaveDateFrom" class="col-sm-2 col-form-label">Leave Date From&nbsp;<span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+      <input type="date" id="leaveDateFrom" name="leaveDateFrom" class="form-control" placeholder="Leave Date From"
+        ngModel required />
+    </div>
+  </div>
+
+  <div class="form-group row">
+    <label for="leaveDateTo" class="col-sm-2 col-form-label">Leave Date From&nbsp;<span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+      <input type="date" id="leaveDateTo" name="leaveDateTo" class="form-control" placeholder="Leave Date To" ngModel
+        required />
+    </div>
+  </div>
+
+  <button class="btn btn-primary btn-lg btn-block mt-3" type="submit">Submit </button>
+
+</form>

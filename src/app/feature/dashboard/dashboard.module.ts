@@ -16,12 +16,21 @@ import { DashHomeComponent } from './dash-home/dash-home.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EmployeeManageComponent } from './employee-contents/employee-manage/employee-manage.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { LeavetypeListComponent } from './leavetype-contents/leavetype-list/leavetype-list.component';
+import { LeavetypeMainComponent } from './leavetype-contents/leavetype-main/leavetype-main.component';
+import { LeavetypeManageComponent } from './leavetype-contents/leavetype-manage/leavetype-manage.component';
+import { LeaverequestListComponent } from './leaverequest-contents/leaverequest-list/leaverequest-list.component';
+import { LeaverequestMainComponent } from './leaverequest-contents/leaverequest-main/leaverequest-main.component';
+import { LeaverequestManageComponent } from './leaverequest-contents/leaverequest-manage/leaverequest-manage.component';
+import { MyProfileComponent } from './profile-contents/my-profile/my-profile.component';
 
 @NgModule({
   imports: [
     CommonModule,
     DashboardRoutingModule,
     FormsModule,
+    NgSelectModule,
     HttpClientModule
   ],
   declarations: [
@@ -30,7 +39,14 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
     DashHomeComponent, 
     EmployeeMainComponent, 
     EmployeeListComponent,
-    EmployeeManageComponent
+    EmployeeManageComponent,
+    LeavetypeListComponent,
+    LeavetypeMainComponent,
+    LeavetypeManageComponent,
+    LeaverequestListComponent,
+    LeaverequestMainComponent,
+    LeaverequestManageComponent,
+    MyProfileComponent
   ],
   providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AuthService,
     {
@@ -38,6 +54,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
       useClass: HttpInterceptorService,
       multi: true
     }
-  ]
+  ],
 })
 export class DashboardModule { }
