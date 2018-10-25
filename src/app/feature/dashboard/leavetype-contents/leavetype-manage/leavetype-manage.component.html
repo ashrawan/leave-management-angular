@@ -1,23 +1,44 @@
-<form #leaveTypeForm="ngForm" (ngSubmit)="createLeaveType(leaveTypeForm)" class="mx-auto col-md-6 offset-md-3 form-box">
+<form [formGroup]="leaveTypeForm" (ngSubmit)="onSubmit()" class="mx-auto col-md-6 offset-md-3 form-box">
 
-  <div *ngIf="!!leaveType_req_msg"  [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{leaveType_req_msg}}</div>
+  <div *ngIf="!!leaveType_req_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{leaveType_req_msg}}</div>
 
   <h4 class="text-center mb-3"> Create Leave Type </h4>
 
   <div class="form-group row">
-      <label for="leaveName" class="col-sm-2 col-form-label">Leave Type Name&nbsp;<span class="text-danger">*</span></label>
-      <div class="col-sm-10">
-          <input type="text" id="leaveName" name="type_name" class="form-control" placeholder="Leave Type Name" ngModel autofocus minlength="2" required/>
-        </div>
+    <label for="typeName" class="col-sm-2 col-form-label">Type Name&nbsp;<span class="text-danger">*</span></label>
+    <div class="col-sm-10">
+      <input type="text" id="typeName" formControlName="typeName" class="form-control" placeholder="Leave Type Name"
+        [ngClass]="{ 'is-invalid': submitted && f.typeName.errors }" />
+      <div *ngIf="submitted && f.typeName.errors" class="invalid-feedback">
+        <div *ngIf="f.typeName.errors.required">Type Name is required</div>
+        <div *ngIf="f.typeName.errors.minlength">Type Name must be at least 3 characters</div>
+      </div>
+    </div>
   </div>
 
   <div class="form-group row">
-    <label for="status" class="col-sm-2 col-form-label">Status&nbsp;<span class="text-danger"></span></label>
+    <label for="status" class="col-sm-2 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
     <div class="col-sm-10">
-        <input type="number" id="status" name="status" class="form-control" placeholder="Status" ngModel/>
+      <select formControlName="status" class="form-control" placeholder="Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+        <option *ngFor="let s of allLeaveTypeStatus" [ngValue]="s.value">
+          {{ s.label }}
+        </option>
+      </select>
+      <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+        <div *ngIf="f.status.errors.required">Status is required</div>
       </div>
-</div>
+    </div>
+  </div>
 
-  <button class="btn btn-primary btn-lg btn-block mt-3" type="submit" [disabled]="leaveTypeForm.invalid">Submit </button>
+  <!-- <div class="form-group row">
+    <label for="status" class="col-sm-2 col-form-label">test &nbsp;<span class="text-danger">* </span></label>
+    <div class="col-sm-10">
+      <ng-select [searchable]="false" [items]="allLeaveTypeStatus" bindLabel="label" bindValue="value" placeholder="Select test"
+        formControlName="test" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.test.errors }">
+      </ng-select>
+    </div>
+  </div> -->
+
+  <button class="btn btn-primary btn-sm btn-block mt-3" type="submit">Submit</button>
 
 </form>

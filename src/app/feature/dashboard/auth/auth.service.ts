@@ -43,15 +43,15 @@ export class AuthService {
 
   refreshToken(){
 
-    console.log("refresh token called");
+    console.log("refresh token called ", localStorage.getItem("refreshToken"));
 
     let data = {
       "grant_type": "refresh_token",
-      "refresh_token": localStorage.getItem("token")
+      "refresh_token": localStorage.getItem("refreshToken")
     }
 
     if(localStorage.getItem("refreshToken") != null){
-      this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data), { headers: this.tokenHeader })
+      this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data))
       .subscribe(res => {
         console.log("Token retrieve successful", res)
         localStorage.setItem("token", res.access_token)
@@ -63,6 +63,7 @@ export class AuthService {
       console.log("Cant use Refresh token");
       this._router.navigate(['/']);
     }
+    return false;
   }
 
   isLoggedIn() {

@@ -18,9 +18,13 @@
     padding: 1%;
 }
 /* All Form Box */
-/* .form-box, .content-box{
+ .form-box, .content-box{
     margin-top: 1%;
 }
+.custom-ngSelect.is-invalid {
+    border: 1px solid rgb(248, 20, 20);
+}
+/*
 .form-box h4 {
     letter-spacing: 1px;
     font-size: 1.7em;
@@ -40,3 +44,6 @@
     background-color: #0d597a !important;
     color: white;
   } */
+
+
+  

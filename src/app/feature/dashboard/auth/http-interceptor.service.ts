@@ -26,11 +26,12 @@ export class HttpInterceptorService implements HttpInterceptor {
         console.log('Caught error', err);
         if (err.status === 401) {
           const s = this._auth.refreshToken();
-          // if (s) {
-          //   return next.handle(tokenizeReq);
-          // }
+          if (s) {
+            console.log("inside successful refresh token call");
+            return next.handle(tokenizeReq);
+          }
         }
-        return Observable.throw(err);
+        return throwError(err);
       }));
   }
 

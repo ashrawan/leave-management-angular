@@ -11,6 +11,7 @@ export class LoginComponent implements OnInit {
 
   private login_user_msg: string;
   public has_error = false;
+  public currentYear = new Date().getFullYear();
 
   constructor(private _router: Router, private _auth: AuthService) { }
 

@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
 import { Observable, concat, of, Subject } from 'rxjs';
 import { EmployeeService } from './../../services/employee.service';
@@ -11,7 +12,7 @@ import { Employee } from '../../model/employee';
 })
 export class EmployeeManageComponent implements OnInit {
 
-  has_error:boolean = false;
+  has_error: boolean = false;
   create_employee_msg: String;
 
   supervisorEmployees: Observable<any>;
@@ -19,9 +20,31 @@ export class EmployeeManageComponent implements OnInit {
   employeeSupervisor: Employee = null;
   isSelectLoading: boolean = false;
 
-  constructor(private _employeeService: EmployeeService) { }
+  submitted: boolean = false;
+  registerForm: FormGroup;
+
+  allEmployeeStatus = [
+    { "label": "Available", "value": "ACTIVE" },
+    { "label": "Not Avilable", "value": "INACTIVE" },
+  ];
+
+  constructor(private formBuilder: FormBuilder, private _employeeService: EmployeeService) { }
 
   ngOnInit() {
+
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', [Validators.required, Validators.minLength(2)]],
+      middleName: [''],
+      lastName: ['', [Validators.required, Validators.minLength(2)]],
+      username: ['', [Validators.required, Validators.minLength(4)]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      email: [''],
+      supervisor: [],
+      status: [this.allEmployeeStatus[0].value, Validators.required]
+    });
+
+
     this.loadEmployee();
   }
 
@@ -40,11 +63,20 @@ export class EmployeeManageComponent implements OnInit {
     );
   }
 
-  createEmployee(formData) {
-    console.log("form data ", formData.value);
-    let newEmployeeInfo = {...formData.value, "employeeSupervisor":this.employeeSupervisor};
-    console.log("new data ", newEmployeeInfo);
-    this._employeeService.createEmployee(newEmployeeInfo).subscribe(res => {
+  get f() { return this.registerForm.controls; }
+
+  onSubmit() {
+    this.submitted = true;
+
+    console.log(this.registerForm.value);
+
+    // stop here if form is invalid
+    if (this.registerForm.invalid) {
+      return;
+    }
+    console.log("success ", this.registerForm.value);
+
+    this._employeeService.createEmployee(this.registerForm.value).subscribe(res => {
       // console.log("creation successful", res);
       this.has_error = false;
       this.create_employee_msg = "Registration Successful";
@@ -53,6 +85,7 @@ export class EmployeeManageComponent implements OnInit {
       this.has_error = true;
       this.create_employee_msg = error.error.message;
     });
+
 
   }
 

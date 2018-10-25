@@ -4,7 +4,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { EmployeeLeaveService } from './services/employeeLeave.service';
 import { LeaveTypeService } from './services/leaveType.service';
 import { EmployeeService } from './services/employee.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeListComponent } from './employee-contents/employee-list/employee-list.component';
 import { EmployeeMainComponent } from './employee-contents/employee-main/employee-main.component';
 import { NavigationComponent } from './../../core/navigation/navigation.component';
@@ -31,7 +31,8 @@ import { MyProfileComponent } from './profile-contents/my-profile/my-profile.com
     DashboardRoutingModule,
     FormsModule,
     NgSelectModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   declarations: [
     NavigationComponent, 

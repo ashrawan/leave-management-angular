@@ -12,9 +12,9 @@
         <tbody>
           <tr *ngFor="let leaverequest of leaveRequests; let i = index">
             <td>{{i+1}}</td>
-            <td>{{leaverequest.employee.fullName}}</td>
-            <td>{{leaverequest.leaveType.type_name}}</td>
-            <td><a routerLink="/home/leaverequests/details/{{leaverequest.id}}" routerLinkActive="active">View</a></td>
+            <td>{{leaverequest.employeeDTO.firstName}}</td>
+            <td>{{leaverequest.leaveTypeDTO.typeName}}</td>
+            <td><a routerLink="/home/leaverequests/details/{{leaverequest.leaveId}}" routerLinkActive="active">View</a></td>
           </tr>
         </tbody>
       </table>
@@ -28,7 +28,7 @@
       
       <div class="col-md-6 offset-md-1">
         <div class="profile-head">
-          <h5><span class="font-weight-bold text-success">{{selectedLeaveRequest.employee.fullName}}</span>
+          <h5><span class="font-weight-bold text-success">{{selectedLeaveRequest.employeeDTO.firstName}}</span>
             <button class="btn btn-success ml-4">Edit </button></h5>
           <p>Created Date : <span class="font-weight-bold">2018/07/25</span></p>
           <ul class="nav nav-tabs">

@@ -11,8 +11,8 @@
         <tbody>
           <tr *ngFor="let leavetype of leaveTypes; let i = index">
             <td>{{i+1}}</td>
-            <td>{{leavetype.type_name}}</td>
-            <td><a routerLink="/home/leavetypes/details/{{leavetype.id}}" routerLinkActive="active">View</a></td>
+            <td>{{leavetype.typeName}}</td>
+            <td><a routerLink="/home/leavetypes/details/{{leavetype.leaveTypeId}}" routerLinkActive="active">View</a></td>
           </tr>
         </tbody>
       </table>

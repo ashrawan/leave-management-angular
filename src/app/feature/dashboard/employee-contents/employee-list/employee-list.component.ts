@@ -1,6 +1,7 @@
 import { EmployeeService } from './../../services/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-employee-list',
@@ -11,17 +12,29 @@ export class EmployeeListComponent implements OnInit {
 
   private id: number;
   private sub: any;
+  private isEdit: boolean = false;
 
   private isEmployeeSelected: boolean = false;
   private selectedEmployee;
   employees;
   errorMsg;
+  employeeEditForm: FormGroup;
 
   constructor(private route: ActivatedRoute, private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.getAllEmployees();
     this.routeId();
+    this.employeeEditForm = this.createFormGroup();
+  }
+
+  createFormGroup() {
+    return new FormGroup({
+      fullName: new FormControl(),
+      username: new FormControl(),
+      email: new FormControl(),
+      contact: new FormControl()
+    });
   }
 
   routeId() {
@@ -51,6 +64,10 @@ export class EmployeeListComponent implements OnInit {
     } else {
       this.isEmployeeSelected = false;
     }
+  }
+
+  toggleEdit() {
+    this.isEdit = !this.isEdit;
   }
 
 
