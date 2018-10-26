@@ -59,21 +59,6 @@ export class LeaverequestManageComponent implements OnInit {
     });
   }
 
-  createLeaveRequest(formData) {
-    console.log("form data ", formData.value);
-    let leave: EmployeeLeave = new EmployeeLeave("", "", this.selectedLeaveType, formData.value.leaveReason, formData.value.dateFrom, formData.value.dateTo, "", "", formData.value.status, "", "");
-    let submissionData = { ...formData.value, "leaveTypeDTO": { "leaveTypeId": this.selectedLeaveType } };
-    console.log("new form data ", leave);
-    this._employeeLeaveService.createEmployeeLeave(formData.value).subscribe(res => {
-      // console.log("creation successful", res);
-      this.has_error = false;
-      this.create_leave_req_msg = "Leave Request Created Succesfully";
-    }, error => {
-      console.log("leave creation error", error.error);
-      this.has_error = true;
-      this.create_leave_req_msg = error.error.message;
-    });
 
-  }
 
 }

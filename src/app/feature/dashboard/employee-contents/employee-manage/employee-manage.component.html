@@ -1,51 +1,46 @@
 <div class="row">
 
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mx-auto col-md-8 col-lg-6 offset-lg-2 form-box">
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="mx-auto col-md-8 offset-md-2 form-box">
 
     <div *ngIf="!!create_employee_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{create_employee_msg}}</div>
 
-    <h4 class="text-center mb-3"> Employee Registration </h4>
+    <h4 class=" mb-3 form-title"> Employee Registration </h4>
 
     <div class="form-group row">
-      <label for="firstName" class="col-sm-3 col-form-label">FirstName&nbsp;<span class="text-danger">* </span></label>
-      <div class="col-sm-9">
+      <label for="firstName" class="col-sm-3 col-form-label">Name&nbsp;<span class="text-danger">* </span></label>
+      <div class="col-sm-3">
         <input type="text" id="firstName" formControlName="firstName" class="form-control" class="form-control"
           placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-          <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-            <div *ngIf="f.firstName.errors.required">First Name is required</div>
-            <div *ngIf="f.firstName.errors.minlength">First Name must be at least 2 characters</div>
-          </div>
+        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+          <div *ngIf="f.firstName.errors.required">First Name is required</div>
+          <div *ngIf="f.firstName.errors.minlength">First Name must be at least 2 characters</div>
+        </div>
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="middleName" class="col-sm-3 col-form-label">MiddleName&nbsp;<span class="text-danger"> </span></label>
-      <div class="col-sm-9">
-        <input type="text" id="middleName" formControlName="middleName" class="form-control" placeholder="Middle Name" class="form-control" />
+      <div class="col-sm-3">
+        <input type="text" id="middleName" formControlName="middleName" class="form-control" placeholder="Middle Name"
+          class="form-control" />
       </div>
-    </div>
 
-    <div class="form-group row">
-      <label for="lastName" class="col-sm-3 col-form-label">LastName&nbsp;<span class="text-danger">* </span></label>
-      <div class="col-sm-9">
+      <div class="col-sm-3">
         <input type="text" id="lastName" formControlName="lastName" class="form-control" class="form-control"
           placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-          <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-            <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 2 characters</div>
-          </div>
+        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+          <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+          <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 2 characters</div>
+        </div>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="username" class="col-sm-3 col-form-label">Username&nbsp;<span class="text-danger">*</span></label>
       <div class="col-sm-9">
-        <input type="text" id="username" formControlName="username" class="form-control"
-          placeholder="Username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
-          <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-            <div *ngIf="f.username.errors.required">Username is required</div>
-            <div *ngIf="f.username.errors.minlength">Username must be at least 2 characters</div>
-          </div>
+        <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username"
+          [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+          <div *ngIf="f.username.errors.required">Username is required</div>
+          <div *ngIf="f.username.errors.minlength">Username must be at least 2 characters</div>
+        </div>
       </div>
     </div>
 
@@ -54,10 +49,10 @@
       <div class="col-sm-9">
         <input type="password" id="password" formControlName="password" class="form-control" placeholder="Password"
           [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-          <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-          </div>
+        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+          <div *ngIf="f.password.errors.required">Password is required</div>
+          <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+        </div>
       </div>
     </div>
 
@@ -66,10 +61,10 @@
       <div class="col-sm-9">
         <input type="number" id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Phone Number"
           [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
-          <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
-            <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
-            <div *ngIf="f.phoneNumber.errors.minlength">Phone Number must be at least 10 characters</div>
-          </div>
+        <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+          <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+          <div *ngIf="f.phoneNumber.errors.minlength">Phone Number must be at least 10 characters</div>
+        </div>
       </div>
     </div>
 
@@ -84,8 +79,8 @@
       <label for="supervisor" class="col-sm-3 col-form-label">Supervisor Employee&nbsp;<span class="text-danger">
         </span></label>
       <div class="col-sm-9">
-        <ng-select [items]="supervisorEmployees | async" formControlName="supervisor" bindLabel="firstName" [hideSelected]="true" [loading]="isSelectLoading"
-          [typeahead]="employeeinput$" placeholder="Select Employee Supervisor">
+        <ng-select [items]="supervisorEmployees | async" formControlName="supervisor" bindLabel="firstName"
+          [hideSelected]="true" [loading]="isSelectLoading" [typeahead]="employeeinput$" placeholder="Select Employee Supervisor">
         </ng-select>
       </div>
     </div>
