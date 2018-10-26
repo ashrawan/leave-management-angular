@@ -1,20 +1,22 @@
-nav a {
+.custom-nav a {
     display: block;
-    padding: 10px;
+    color: #fff;
+    letter-spacing: 0.05em;
 }
-nav a.active {
-    font-weight: 700;
-    color: rgba(0, 109, 175, 0.904);
-    background-color: #f1f1f1;
+.custom-nav a.active {
+    font-weight: 600;
     border-radius: 2px;
+    color: #d4fff7;
 }
 .lg-link {
     font-size: 40px;
     text-decoration: underline;
 }
-.custom-nav{
-    background-color: #2c537b;
-}
+
 .custom-nav a:hover {
-    color: rgb(255, 162, 162);
+    text-decoration: none;
 }
+
+.nav-middle-spacer {
+    flex: 1 1 auto;
+  }

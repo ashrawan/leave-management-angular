@@ -1,3 +1,4 @@
+import { MaterialModule } from './../../shared/material/material.module';
 import { HttpInterceptorService } from './auth/http-interceptor.service';
 import { AuthService } from './auth/auth.service';
 import { AuthGuard } from './auth/auth.guard';
@@ -32,7 +33,8 @@ import { MyProfileComponent } from './profile-contents/my-profile/my-profile.com
     FormsModule,
     NgSelectModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   declarations: [
     NavigationComponent, 

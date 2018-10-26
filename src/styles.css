@@ -1,5 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@ng-select/ng-select/themes/default.theme.css";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
     background-color: #f7f7f7;
@@ -37,11 +38,14 @@ body {
     padding: 0.5% 0%;
 }
 .form-box .form-title {
-    color: #1cc47e;
+    color: #3f51b5;
     padding: 1% 0%;
     border-bottom: 1px solid #ccc;
 }
-
+.custom-tab a.active {
+    color: #0000ff;
+    border-bottom: 1px solid #0000ff;
+}
 /*
 .form-box h4 {
     letter-spacing: 1px;

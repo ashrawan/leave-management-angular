@@ -1,12 +1,9 @@
 <div class="content-box">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/leavetypes/details/0" routerLinkActive="active">All Leave Types</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/leavetypes/add" routerLinkActive="active">Add Leave Type</a>
-    </li>
-  </ul>
+
+  <div mat-tab-nav-bar class="custom-tab">
+    <a mat-tab-link class="nav-link" routerLink="/home/leavetypes/details/0" routerLinkActive="active">All Leave Types</a>
+    <a mat-tab-link class="nav-link" routerLink="/home/leavetypes/add" routerLinkActive="active">Add Leave Type</a>
+  </div>
 
   <router-outlet></router-outlet>
 </div>

@@ -11,7 +11,7 @@ export class LoginComponent implements OnInit {
 
   private login_user_msg: string;
   public has_error = false;
-  public currentYear = new Date().getFullYear();
+  hide = true;
 
   constructor(private _router: Router, private _auth: AuthService) { }
 
@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         console.log("Token reterive successful", res)
         this.has_error = false;
+        this.login_user_msg = "Sucess, Loading... !!!";
         localStorage.setItem("token", res.access_token)
         localStorage.setItem("refreshToken", res.refresh_token);
         this._router.navigate(['/home']);

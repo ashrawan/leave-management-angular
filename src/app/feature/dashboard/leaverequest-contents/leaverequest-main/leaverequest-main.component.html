@@ -1,12 +1,9 @@
 <div class="content-box">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/leaverequests/details/0" routerLinkActive="active">All Requests</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/leaverequests/add" routerLinkActive="active">Request For Leave</a>
-    </li>
-  </ul>
+
+  <div mat-tab-nav-bar class="custom-tab">
+    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/details/0" routerLinkActive="active">All Requests</a>
+    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/add" routerLinkActive="active">Request For Leave</a>
+  </div>
 
   <router-outlet></router-outlet>
 </div>

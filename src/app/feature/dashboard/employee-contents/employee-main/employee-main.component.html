@@ -1,11 +1,9 @@
 <div class="content-box">
-  <ul class="nav nav-tabs">
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/employees/details/0" routerLinkActive="active">All Employees</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link" routerLink="/home/employees/add" routerLinkActive="active">New Employee</a>
-    </li>
-  </ul>
+
+  <div mat-tab-nav-bar class="custom-tab">
+    <a mat-tab-link class="nav-link" routerLink="/home/employees/details/0" routerLinkActive="active">All Employees</a>
+    <a mat-tab-link class="nav-link" routerLink="/home/employees/add" routerLinkActive="active">New Employee</a>
+  </div>
+
   <router-outlet></router-outlet>
 </div>

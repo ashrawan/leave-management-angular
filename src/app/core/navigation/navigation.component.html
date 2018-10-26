@@ -1,32 +1,30 @@
-<nav class="navbar navbar-expand-lg navbar-light custom-nav">
-  <a class="navbar-brand text-white" href="#">LeaveManagement</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+<mat-toolbar color="primary" class="wrapper-toolbar custom-nav">
+  <a class="navbar-brand text-white" routerLink="/home">Dashboard (Logo)</a>
+
+  <button mat-flat-button color="primary">
+    <a routerLink="/home/employees" routerLinkActive="active">Employee</a>
   </button>
 
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item">
-        <a routerLink="/home" routerLinkActive="active">Dashboard</a>
-      </li>
-    </ul>
-  </div>
-
-  <div class="pr-3">
-    <a routerLink="/home/employees" routerLinkActive="active">Employee</a>
-  </div>
-  <div class="pr-3">
+  <button mat-flat-button color="primary">
     <a routerLink="/home/leaverequests" routerLinkActive="active">Leave Request</a>
-  </div>
-  <div class="pr-3">
-    <a routerLink="/home/leavetypes" routerLinkActive="active">Leave Type</a>
-  </div>
-  <div class="pr-3">
-    <a routerLink="/home/profile" routerLinkActive="active">Profile</a>
-  </div>
+  </button>
 
-  <div class="float-right">
-    <button class="btn btn-sm btn-danger" (click)="_auth.logout()">Logout</button>
-  </div>
-</nav>
+  <button mat-flat-button color="primary">
+    <a routerLink="/home/leavetypes" routerLinkActive="active">Leave Type</a>
+  </button>
+
+  <span class="nav-middle-spacer"></span>
+
+  <button mat-flat-button color="primary" [matMenuTriggerFor]="menu">username
+    <mat-icon>arrow_drop_down_circle</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <a routerLink="/home/profile" routerLinkActive="active">Profile</a>
+    </button>
+    <button mat-menu-item>
+      <button mat-flat-button color="warn" (click)="_auth.logout()">Logout</button>
+    </button>
+  </mat-menu>
+
+</mat-toolbar>

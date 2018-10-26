@@ -17,6 +17,7 @@ export class LeavetypeListComponent implements OnInit {
   private selectedleaveType;
   leaveTypes;
   errorMsg;
+  displayedColumns: string[] = ['No.', 'Type Name', 'Options'];
 
   constructor(private route: ActivatedRoute, private _leaveTypeService: LeaveTypeService) { }
 

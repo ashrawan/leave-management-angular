@@ -2,8 +2,13 @@
 .loginform-box {
     border: 1px solid rgb(206, 204, 204);
     border-radius: 7px;
-    background-color: #3297a7;
+    /* background-color: #3297a7; */
     padding: 2%;
     margin: 10% 0%;
-    color: #fff;
+    /* color: #fff; */
+}
+.login-title {
+    letter-spacing: 1px;
+    font-weight: 400;
+    color: #3f51b5;
 }
