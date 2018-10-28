@@ -1,0 +1,163 @@
+<div class="col-md-12 mt-5">
+
+  <!-- Show Employee Details -->
+  <div *ngIf="isEmployeeSelected">
+    <button class="btn btn-success ml-4 float-right" (click)="toggleEdit()">
+      {{isEdit ? "View Profile" : "Edit Profile"}}
+    </button>
+    <div *ngIf="!isEdit" class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="assets/image/profile_image.jpg"
+            class="employee-profile-img" alt="profile image" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-head">
+          <h5><span class="font-weight-bold text-success">{{selectedEmployee.firstName}}
+              {{selectedEmployee.middleName}} {{selectedEmployee.lastName}}</span>
+            <span class="font-italic pl-2">{{selectedEmployee.username}}</span>
+          </h5>
+          <h6>Full Stack Developer</h6>
+          <p>Registered Date : <span>{{selectedEmployee.createdAt | date :'medium'}}</span></p>
+
+          <div mat-tab-nav-bar class="custom-tab">
+            <a mat-tab-link class="nav-link active">About</a> </div>
+        </div>
+
+
+        <div class="row font-italic mt-3">
+          <div class="col-md-6 border-right">
+            <p>Employee Id: {{selectedEmployee.employeeId}}</p>
+            <p>Full Name: {{selectedEmployee.firstName}}
+              {{selectedEmployee.middleName}} {{selectedEmployee.lastName}}</p>
+            <p>Username: {{selectedEmployee.username}}</p>
+            <p>Phone No.: {{selectedEmployee.phoneNumber}}</p>
+            <p>Email: {{selectedEmployee.email}}</p>
+            <p>Role: {{selectedEmployee.role}}</p>
+            <p>Status: {{selectedEmployee.status}}</p>
+            <p *ngIf="selectedEmployee.supervisor">Supervisor: <a routerLink="/home/employees/details/{{selectedEmployee.supervisor.employeeId}}"
+                routerLinkActive="active">
+                {{selectedEmployee.supervisor.firstName}}
+              </a></p>
+          </div>
+          <div class="col-md-6">
+            <div class="font-italic">
+              <button class="btn btn-secondary">Supervising &#8595;</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div *ngIf="isEdit" class="row">
+      <div class="col-md-4">
+        <div class="profile-img">
+          <img src="https://images.pexels.com/photos/295821/pexels-photo-295821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
+            class="employee-profile-img" alt="profile image" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-head">
+
+          <form [formGroup]="employeeEditForm" (ngSubmit)="onSubmit()">
+
+            <div *ngIf="!!update_employee_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{update_employee_msg}}</div>
+
+            <div class="form-group row">
+              <label for="firstName" class="col-sm-3 col-form-label">Name&nbsp;<span class="text-danger">* </span></label>
+              <div class="col-sm-3">
+                <input type="text" id="firstName" formControlName="firstName" class="form-control" class="form-control"
+                  placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                  <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                  <div *ngIf="f.firstName.errors.minlength">First Name must be at least 2 characters</div>
+                </div>
+              </div>
+
+              <div class="col-sm-3">
+                <input type="text" id="middleName" formControlName="middleName" class="form-control" placeholder="Middle Name"
+                  class="form-control" />
+              </div>
+
+              <div class="col-sm-3">
+                <input type="text" id="lastName" formControlName="lastName" class="form-control" class="form-control"
+                  placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                  <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                  <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 2 characters</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="username" class="col-sm-3 col-form-label">Username&nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" id="username" formControlName="username" class="form-control" placeholder="Username"
+                  [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+                <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+                  <div *ngIf="f.username.errors.required">Username is required</div>
+                  <div *ngIf="f.username.errors.minlength">Username must be at least 2 characters</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="phoneNumber" class="col-sm-3 col-form-label">Phone No.&nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="number" id="phoneNumber" formControlName="phoneNumber" class="form-control" placeholder="Phone Number"
+                  [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
+                <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
+                  <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
+                  <div *ngIf="f.phoneNumber.errors.min">Phone Number must be at least of 10 digits</div>
+                  <div *ngIf="f.phoneNumber.errors.max">Phone Number cant be more than 10 digits</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label">Email&nbsp;<span class="text-danger"></span></label>
+              <div class="col-sm-9">
+                <input type="email" id="email" formControlName="email" class="form-control" placeholder="Email" />
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="supervisor" class="col-sm-3 col-form-label">Supervisor Employee&nbsp;<span class="text-danger">
+                </span></label>
+              <div class="col-sm-9">
+                <ng-select [items]="supervisorEmployees | async" formControlName="supervisor" bindLabel="firstName"
+                  [hideSelected]="true" [loading]="isSelectLoading" [typeahead]="employeeinput$" placeholder="Select Employee Supervisor">
+                </ng-select>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="status" class="col-sm-3 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
+              <div class="col-sm-9">
+                <mat-radio-group formControlName="status" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                  <mat-radio-button value="ACTIVE">ACTIVE</mat-radio-button>
+                  <mat-radio-button class="pl-2" value="INACTIVE">INACTIVE</mat-radio-button>
+                </mat-radio-group>
+                <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                  <div *ngIf="f.status.errors.required">Status is required</div>
+                </div>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="mt-3 btn-block" type="submit">Update </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <div *ngIf="!isEmployeeSelected">
+    <h4>Oops ! Can't load selected employee </h4>
+  </div>
+
+</div>

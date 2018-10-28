@@ -63,7 +63,8 @@
           [ngClass]="{ 'is-invalid': submitted && f.phoneNumber.errors }" />
         <div *ngIf="submitted && f.phoneNumber.errors" class="invalid-feedback">
           <div *ngIf="f.phoneNumber.errors.required">Phone Number is required</div>
-          <div *ngIf="f.phoneNumber.errors.minlength">Phone Number must be at least 10 characters</div>
+          <div *ngIf="f.phoneNumber.errors.min">Phone Number must be at least of 10 digits</div>
+          <div *ngIf="f.phoneNumber.errors.max">Phone Number cant be more than 10 digits</div>
         </div>
       </div>
     </div>
@@ -88,11 +89,10 @@
     <div class="form-group row">
       <label for="status" class="col-sm-3 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
       <div class="col-sm-9">
-        <select formControlName="status" class="form-control" placeholder="Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-          <option *ngFor="let s of allEmployeeStatus" [ngValue]="s.value">
-            {{ s.label }}
-          </option>
-        </select>
+        <mat-radio-group formControlName="status" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+          <mat-radio-button value="ACTIVE">ACTIVE</mat-radio-button>
+          <mat-radio-button class="pl-2" value="INACTIVE">INACTIVE</mat-radio-button>
+        </mat-radio-group>
         <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
           <div *ngIf="f.status.errors.required">Status is required</div>
         </div>

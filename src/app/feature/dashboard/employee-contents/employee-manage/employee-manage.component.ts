@@ -38,7 +38,7 @@ export class EmployeeManageComponent implements OnInit {
       lastName: ['', [Validators.required, Validators.minLength(2)]],
       username: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      phoneNumber: ['', [Validators.required, Validators.minLength(10)]],
+      phoneNumber: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
       email: [''],
       supervisor: [],
       status: [this.allEmployeeStatus[0].value, Validators.required]

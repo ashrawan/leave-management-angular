@@ -1,135 +1,42 @@
 <div class="row content-box">
 
-  <div class="col-md-4 border-right">
+  <div class="col-md-12">
     <div class="list-side-table">
-      <table class="table table-bordered">
-        <thead class="thead-light">
-          <th>S.N</th>
-          <th>Full Name</th>
+      <table class="table table-hover">
+        <thead>
+          <th>S.N </th>
+          <th>Name <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Phone Number <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Email <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Supervisor <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Role <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Status <mat-icon>swap_vert</mat-icon>
+          </th>
           <th>Options</th>
         </thead>
         <tbody>
           <tr *ngFor="let employee of employees; let i = index">
             <td>{{i+1}}</td>
-            <td>{{employee.firstName}}</td>
-            <!-- <td><button (click)="onEmployeeSelect(employee)" class="btn btn-sm btn-secondary">View</button></td> -->
-            <td><a routerLink="/home/employees/details/{{employee.employeeId}}" routerLinkActive="active">View</a></td>
+            <td>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</td>
+            <td>{{employee.phoneNumber > 0 ? employee.phoneNumber : ''}}</td>
+            <td>{{employee.email}}</td>
+            <td><a *ngIf="employee.supervisor" routerLink="/home/employees/details/{{employee.supervisor.employeeId}}">
+                {{employee.supervisor.firstName}} {{employee.supervisor.middleName}} {{employee.supervisor.lastName}}
+              </a></td>
+            <td>{{employee.role}}</td>
+            <td [ngClass]="(employee.status=='ACTIVE')?'text-success':'text-danger'">{{employee.status}}</td>
+            <td><a routerLink="/home/employees/details/{{employee.employeeId}}">
+                <button mat-raised-button>View</button>
+              </a></td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div class="col-md-8">
-
-    <!-- Show Employee Details -->
-    <div *ngIf="isEmployeeSelected">
-      <button class="btn btn-success ml-4 float-right" (click)="toggleEdit()">
-        {{isEdit ? "View Profile" : "Edit Profile"}}
-      </button>
-      <div *ngIf="!isEdit" class="row">
-        <div class="col-md-4">
-          <div class="profile-img">
-            <img src="https://images.pexels.com/photos/295821/pexels-photo-295821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              class="employee-profile-img" alt="profile image" />
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="profile-head">
-            <h5><span class="font-weight-bold text-success">{{selectedEmployee.fullName}}</span>
-              <span class="font-italic pl-2" style="font-size:0.8em;">{{selectedEmployee.username}}</span>
-            </h5>
-            <h6>Full Stack Developer</h6>
-            <p>Joined Date : <span class="font-weight-bold">2018/07/25</span></p>
-            <ul class="nav nav-tabs">
-              <li class="nav-item">
-                <span class="nav-link active">About</span>
-              </li>
-            </ul>
-          </div>
-
-          <!-- Employee About -->
-          <div class="row font-italic mt-3">
-            <div class="col-md-6 border-right">
-              <p>Employee Id: 1</p>
-              <p>Full Name: Alexia Kasey</p>
-              <p>Username: alexia7kasey</p>
-              <p>Phone No.: 111-111-1111</p>
-              <p>Email: aa@gmail.com</p>
-              <p>Role: USER_ROLE</p>
-              <p>Status: Active</p>
-            </div>
-            <div class="col-md-6">
-              <!-- Employee Under Supervision -->
-              <div class="font-italic">
-                <button class="btn btn-secondary">Supervising &#8595;</button>
-              </div>
-            </div>
-          </div>
-
-        </div>
-      </div>
-
-      <div *ngIf="isEdit" class="row">
-        <div class="col-md-4">
-          <div class="profile-img">
-            <img src="https://images.pexels.com/photos/295821/pexels-photo-295821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-              class="employee-profile-img" alt="profile image" />
-          </div>
-        </div>
-        <div class="col-md-8">
-          <div class="profile-head">
-
-            <form [formGroup]="employeeEditForm" (ngSubmit)="onSubmit()" novalidate>
-              <!-- <div formGroupName="employee" novalidate> -->
-
-              <div class="form-group row">
-                <label for="fullName" class="col-sm-2 col-form-label">FullName&nbsp;<span class="text-danger">*
-                  </span></label>
-                <div class="col-sm-10">
-                  <input type="text" id="fullName" formControlName="fullName" class="form-control" placeholder="Full Name"
-                    autofocus minlength="2" required />
-                </div>
-              </div>
-
-              <!-- <div class="form-group row">
-                  <label for="username" class="col-sm-2 col-form-label">Username&nbsp;<span class="text-danger">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="text" id="username" formControlName="username" name="username" class="form-control"
-                      placeholder="Username" autofocus minlength="2" required />
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="password" class="col-sm-2 col-form-label">Password&nbsp;<span class="text-danger">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="password" id="password" formControlName="password" name="password" class="form-control"
-                      placeholder="Password" ngModel required />
-                  </div>
-                </div>
-
-                <div class="form-group row">
-                  <label for="joinedDate" class="col-sm-2 col-form-label">Joined Date&nbsp;<span class="text-danger">*</span></label>
-                  <div class="col-sm-10">
-                    <input type="date" id="joinedDate" formControlName="joinedDate" name="joinedDate" class="form-control"
-                      placeholder="Password" ngModel required />
-                  </div>
-                </div> -->
-
-              <!-- </div> -->
-            </form>
-          </div>
-
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Show Empty Details -->
-    <div *ngIf="!isEmployeeSelected">
-      <h4>Please Select Employee</h4>
-    </div>
-
   </div>
 
 </div>
