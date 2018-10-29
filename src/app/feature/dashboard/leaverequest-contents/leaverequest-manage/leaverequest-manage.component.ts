@@ -39,21 +39,17 @@ export class LeaverequestManageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.leaveForm.value);
-
     // stop here if form is invalid
     if (this.leaveForm.invalid) {
       return;
     }
     let submissionData = { ...this.leaveForm.value, "leaveTypeDTO": { "leaveTypeId": this.leaveForm.value.leaveType } };
-    console.log("success ", submissionData);
 
     this._employeeLeaveService.createEmployeeLeave(submissionData).subscribe(res => {
-      // console.log("creation successful", res);
       this.has_error = false;
       this.create_leave_req_msg = "Leave Request succesfully Submitted";
     }, error => {
-      console.log("leave creation error", error.error);
+      // console.log("leave creation error", error.error);
       this.has_error = true;
       this.create_leave_req_msg = error.error.message;
     });

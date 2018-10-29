@@ -31,13 +31,12 @@ export class LeaveTypeService {
   }
 
   createLeaveType(LeaveTypeData): Observable<LeaveType[]> {
-    console.log("leave type data in observable", LeaveTypeData);
     return this.http.post<any>(Constant.API_ENDPOINT + "/rest/leave-types", LeaveTypeData)
       .pipe(catchError(this.errorHandler));
   }
 
-  updateLeaveType(LeaveTypeData, id): Observable<LeaveType[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/leave-types/" + id, LeaveTypeData)
+  updateLeaveType(LeaveTypeData): Observable<LeaveType[]> {
+    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/leave-types", LeaveTypeData)
       .pipe(catchError(this.errorHandler));
   }
 

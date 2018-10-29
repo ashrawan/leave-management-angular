@@ -1,3 +1,5 @@
+import { LeavetypeDetailsComponent } from './../leavetype-contents/leavetype-details/leavetype-details.component';
+import { EmployeeDetailsComponent } from './../employee-contents/employee-details/employee-details.component';
 import { MyProfileComponent } from './../profile-contents/my-profile/my-profile.component';
 import { LeaverequestManageComponent } from './../leaverequest-contents/leaverequest-manage/leaverequest-manage.component';
 import { LeaverequestMainComponent } from './../leaverequest-contents/leaverequest-main/leaverequest-main.component';
@@ -13,6 +15,7 @@ import { LeavetypeListComponent } from '../leavetype-contents/leavetype-list/lea
 import { LeavetypeMainComponent } from '../leavetype-contents/leavetype-main/leavetype-main.component';
 import { LeavetypeManageComponent } from '../leavetype-contents/leavetype-manage/leavetype-manage.component';
 import { LeaverequestListComponent } from '../leaverequest-contents/leaverequest-list/leaverequest-list.component';
+import { LeaverequestDetailsComponent } from '../leaverequest-contents/leaverequest-details/leaverequest-details.component';
 
 const routes: Routes = [
   {
@@ -24,27 +27,30 @@ const routes: Routes = [
           path: 'employees',
           component: EmployeeMainComponent,
           children: [
-            {path: '', redirectTo: 'details/0', pathMatch: 'full'}, 
-            {path: 'details/:id', component: EmployeeListComponent},
-            {path: 'add', component: EmployeeManageComponent}
+            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
+            {path: 'details', component: EmployeeListComponent},
+            {path: 'details/:id', component: EmployeeDetailsComponent},
+            {path: 'new', component: EmployeeManageComponent}
           ]
         },
         {
           path: 'leavetypes',
           component: LeavetypeMainComponent,
           children: [
-            {path: '', redirectTo: 'details/0', pathMatch: 'full'}, 
-            {path: 'details/:id', component: LeavetypeListComponent},
-            {path: 'add', component: LeavetypeManageComponent}
+            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
+            {path: 'details', component: LeavetypeListComponent},
+            {path: 'details/:id', component: LeavetypeDetailsComponent},
+            {path: 'new', component: LeavetypeManageComponent}
           ]
         },
         {
           path: 'leaverequests',
           component: LeaverequestMainComponent,
           children: [
-            {path: '', redirectTo: 'details/0', pathMatch: 'full'}, 
-            {path: 'details/:id', component: LeaverequestListComponent},
-            {path: 'add', component: LeaverequestManageComponent}
+            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
+            {path: 'details', component: LeaverequestListComponent},
+            {path: 'details/:id', component: LeaverequestDetailsComponent},
+            {path: 'new', component: LeaverequestManageComponent}
           ]
         },
         { path: 'profile', component: MyProfileComponent },

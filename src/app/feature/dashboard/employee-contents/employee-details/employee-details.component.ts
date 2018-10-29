@@ -23,6 +23,7 @@ export class EmployeeDetailsComponent implements OnInit {
   private isEmployeeSelected: boolean = false;
   private selectedEmployee;
   errorMsg;
+  employeesUnderSupervision;
 
   update_employee_msg;
   has_error: boolean = false;
@@ -78,13 +79,23 @@ export class EmployeeDetailsComponent implements OnInit {
           data => {
             this.selectedEmployee = data;
             this.isEmployeeSelected = true;
-            console.log("selectedEmployee data: ", data);
+            this.employeesUnderSupervision = null;
+            // console.log("selectedEmployee data: ", data);
             this.initEditForm();
           },
           error => this.errorMsg = error);
     } else {
       this.isEmployeeSelected = false;
     }
+  }
+
+  getEmployeeUnderSupervision(){
+    // console.log("employee under supervision ", this.selectedEmployee.employeeId);
+    this._employeeService.getEmployeeUnderSupervision(this.selectedEmployee.employeeId).subscribe(res => {
+      this.employeesUnderSupervision = res;
+    }, error => {
+      this.employeesUnderSupervision = null;
+    });
   }
 
   toggleEdit() {
@@ -97,18 +108,16 @@ export class EmployeeDetailsComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.employeeEditForm.value);
-
     // stop here if form is invalid
     if (this.employeeEditForm.invalid) {
       return;
     }
-    console.log("success ", this.employeeEditForm.value);
+    // console.log("success ", this.employeeEditForm.value);
     this._employeeService.updateEmployee(this.employeeEditForm.value).subscribe(res => {
       this.has_error = false;
       this.update_employee_msg = "Update Successful";
     }, error => {
-      console.log("ee ", error);
+      // console.log("ee ", error);
       this.has_error = true;
       this.update_employee_msg = error.error.message;;
     });

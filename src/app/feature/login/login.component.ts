@@ -22,13 +22,13 @@ export class LoginComponent implements OnInit {
   }
 
   userLogin(form) {
-    console.log("form", form.value);
+    // console.log("form", form.value);
     let username = form.value.username;
     let password = form.value.password;
 
     this._auth.loginUser(form.value)
       .subscribe(res => {
-        console.log("Token reterive successful", res)
+        // console.log("Token reterive successful", res)
         this.has_error = false;
         this.login_user_msg = "Sucess, Loading... !!!";
         localStorage.setItem("token", res.access_token)

@@ -25,6 +25,9 @@ import { LeaverequestListComponent } from './leaverequest-contents/leaverequest-
 import { LeaverequestMainComponent } from './leaverequest-contents/leaverequest-main/leaverequest-main.component';
 import { LeaverequestManageComponent } from './leaverequest-contents/leaverequest-manage/leaverequest-manage.component';
 import { MyProfileComponent } from './profile-contents/my-profile/my-profile.component';
+import { EmployeeDetailsComponent } from './employee-contents/employee-details/employee-details.component';
+import { LeaverequestDetailsComponent } from './leaverequest-contents/leaverequest-details/leaverequest-details.component';
+import { LeavetypeDetailsComponent } from './leavetype-contents/leavetype-details/leavetype-details.component';
 
 @NgModule({
   imports: [
@@ -49,7 +52,10 @@ import { MyProfileComponent } from './profile-contents/my-profile/my-profile.com
     LeaverequestListComponent,
     LeaverequestMainComponent,
     LeaverequestManageComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    EmployeeDetailsComponent,
+    LeaverequestDetailsComponent,
+    LeavetypeDetailsComponent
   ],
   providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AuthService,
     {

@@ -2,29 +2,28 @@
 
   <!-- Show Employee Details -->
   <div *ngIf="isEmployeeSelected">
-    <button class="btn btn-success ml-4 float-right" (click)="toggleEdit()">
+    <button class="btn btn-info ml-4 float-right" (click)="toggleEdit()">
       {{isEdit ? "View Profile" : "Edit Profile"}}
     </button>
     <div *ngIf="!isEdit" class="row">
       <div class="col-md-4">
-        <div class="profile-img">
-          <img src="assets/image/profile_image.jpg"
-            class="employee-profile-img" alt="profile image" />
+        <div class="profile-img text-center">
+          <img src="assets/image/profile_image.jpg" class="employee-profile-img" alt="profile image" />
         </div>
       </div>
       <div class="col-md-8">
         <div class="profile-head">
-          <h5><span class="font-weight-bold text-success">{{selectedEmployee.firstName}}
+          <h5><span class="font-weight-bold text-success">
+              {{selectedEmployee.firstName}}
               {{selectedEmployee.middleName}} {{selectedEmployee.lastName}}</span>
             <span class="font-italic pl-2">{{selectedEmployee.username}}</span>
           </h5>
-          <h6>Full Stack Developer</h6>
+          <h6>{{selectedEmployee.position}}</h6>
           <p>Registered Date : <span>{{selectedEmployee.createdAt | date :'medium'}}</span></p>
 
           <div mat-tab-nav-bar class="custom-tab">
             <a mat-tab-link class="nav-link active">About</a> </div>
         </div>
-
 
         <div class="row font-italic mt-3">
           <div class="col-md-6 border-right">
@@ -38,12 +37,26 @@
             <p>Status: {{selectedEmployee.status}}</p>
             <p *ngIf="selectedEmployee.supervisor">Supervisor: <a routerLink="/home/employees/details/{{selectedEmployee.supervisor.employeeId}}"
                 routerLinkActive="active">
-                {{selectedEmployee.supervisor.firstName}}
+                {{selectedEmployee.supervisor.firstName}} {{selectedEmployee.supervisor.middleName}}
+                {{selectedEmployee.supervisor.lastName}}
               </a></p>
           </div>
           <div class="col-md-6">
             <div class="font-italic">
-              <button class="btn btn-secondary">Supervising &#8595;</button>
+              <mat-expansion-panel>
+                <mat-expansion-panel-header (click)="getEmployeeUnderSupervision()">
+                  Employee Under Supervision
+                </mat-expansion-panel-header>
+
+                <div *ngIf="employeesUnderSupervision">
+                  <div *ngFor="let e of employeesUnderSupervision; let i = index">
+                    <p>{{i+1}} . <a routerLink="/home/employees/details/{{e.employeeId}}">
+                        {{e.firstName}} {{e.middleName}} {{e.lastName}}
+                      </a></p>
+                  </div>
+                </div>
+
+              </mat-expansion-panel>
             </div>
           </div>
         </div>
@@ -54,15 +67,13 @@
     <div *ngIf="isEdit" class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img src="https://images.pexels.com/photos/295821/pexels-photo-295821.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260"
-            class="employee-profile-img" alt="profile image" />
+          <img src="assets/image/profile_image.jpg" class="employee-profile-img" alt="profile image" />
         </div>
       </div>
       <div class="col-md-8">
         <div class="profile-head">
 
           <form [formGroup]="employeeEditForm" (ngSubmit)="onSubmit()">
-
             <div *ngIf="!!update_employee_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{update_employee_msg}}</div>
 
             <div class="form-group row">

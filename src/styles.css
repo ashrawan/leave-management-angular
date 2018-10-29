@@ -3,7 +3,12 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
+    margin: 0;
     background-color: #f7f7f7;
+    font-family: sans-serif;
+    font-size: .875rem;
+    font-weight: 400;
+    line-height: 1.5;
 }
 .outlet-page-content {
     margin-top: 1%;
@@ -31,6 +36,7 @@ body {
 }
 .custom-ngSelect.is-invalid {
     border: 1px solid rgb(248, 20, 20);
+    padding: 1%;
 }
 
 .form-box .form-group {
@@ -45,6 +51,12 @@ body {
 .custom-tab a.active {
     color: #0000ff;
     border-bottom: 1px solid #0000ff;
+}
+.table thead {
+    cursor: pointer;
+}
+.table mat-icon {
+    vertical-align: middle;
 }
 /*
 .form-box h4 {

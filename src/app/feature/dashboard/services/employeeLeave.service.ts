@@ -1,3 +1,4 @@
+import { Employee } from './../model/employee';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -32,6 +33,11 @@ export class EmployeeLeaveService {
 
   updateEmployeeLeave(EmployeeLeaveData, id): Observable<EmployeeLeave[]> {
     return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employee-leaves" + id, EmployeeLeaveData)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  approveEmployeeLeave(EmployeeLeaveData):Observable<EmployeeLeave[]> {
+    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employee-leaves/approve-employee-leave", EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 

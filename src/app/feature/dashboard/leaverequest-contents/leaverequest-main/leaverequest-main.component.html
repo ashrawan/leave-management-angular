@@ -1,8 +1,10 @@
 <div class="content-box">
 
   <div mat-tab-nav-bar class="custom-tab">
-    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/details/0" routerLinkActive="active">All Requests</a>
-    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/add" routerLinkActive="active">Request For Leave</a>
+    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/details" routerLinkActive="active">
+      <mat-icon>event_note</mat-icon>&nbsp;All Requests</a>
+    <a mat-tab-link class="nav-link" routerLink="/home/leaverequests/new" routerLinkActive="active">
+      <mat-icon>add_circle</mat-icon>&nbsp;Request For Leave</a>
   </div>
 
   <router-outlet></router-outlet>

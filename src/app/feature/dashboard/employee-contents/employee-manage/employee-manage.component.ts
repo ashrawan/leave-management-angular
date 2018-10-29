@@ -36,7 +36,7 @@ export class EmployeeManageComponent implements OnInit {
       firstName: ['', [Validators.required, Validators.minLength(2)]],
       middleName: [''],
       lastName: ['', [Validators.required, Validators.minLength(2)]],
-      username: ['', [Validators.required, Validators.minLength(4)]],
+      username: ['', [Validators.required, Validators.minLength(2)]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       phoneNumber: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
       email: [''],
@@ -68,20 +68,16 @@ export class EmployeeManageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.registerForm.value);
-
     // stop here if form is invalid
     if (this.registerForm.invalid) {
       return;
     }
-    console.log("success ", this.registerForm.value);
+    // console.log("success ", this.registerForm.value);
 
     this._employeeService.createEmployee(this.registerForm.value).subscribe(res => {
-      // console.log("creation successful", res);
       this.has_error = false;
       this.create_employee_msg = "Registration Successful";
     }, error => {
-      // console.log("user creation error", error.error);
       this.has_error = true;
       this.create_employee_msg = error.error.message;
     });

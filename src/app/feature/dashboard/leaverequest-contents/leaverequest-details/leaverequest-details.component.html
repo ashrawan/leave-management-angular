@@ -1,0 +1,108 @@
+<div class="col-md-12 mt-4">
+
+  <!-- Show Leave Request Details -->
+  <div *ngIf="isLeaveRequestSelected">
+
+    <div class="col-md-12">
+      <div class="jumbotron">
+
+      </div>
+    </div>
+
+    <div class="row col-md-12">
+      <div class="col-md-12">
+        <button class="btn btn-info float-right" (click)="toggleEdit()">
+          {{isRequestEdit ? "View Request" : "Approve Request"}}
+        </button>
+      </div>
+      <div class="col-md-4">
+        <div class="profile-img text-center">
+          <img src="assets/image/profile_image.jpg" class="leave-emp-profile-img" alt="profile image" />
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="profile-head">
+          <h5><span class="font-weight-bold text-success">
+              <a routerLink="/home/employees/details/{{selectedLeaveRequest.employeeDTO.employeeId}}">
+                {{selectedLeaveRequest.employeeDTO.firstName}} {{selectedLeaveRequest.employeeDTO.middleName}}
+                {{selectedLeaveRequest.employeeDTO.lastName}}</a>
+            </span>
+          </h5>
+          <h6>{{selectedLeaveRequest.leaveTypeDTO.typeName}}</h6>
+          <p>Submitted On : <span>{{selectedLeaveRequest.createdAt | date :'medium'}}</span></p>
+        </div>
+
+        <div mat-tab-nav-bar class="custom-tab">
+          <a mat-tab-link class="nav-link active">Info</a>
+        </div>
+
+        <div class="row font-italic mt-3">
+          <div class="col-md-6 border-right">
+            <p>LeaveRequest Id: {{selectedLeaveRequest.leaveId}}</p>
+            <p>Employee Name: {{selectedLeaveRequest.employeeDTO.firstName}}
+              {{selectedLeaveRequest.employeeDTO.middleName}}
+              {{selectedLeaveRequest.employeeDTO.lastName}}</p>
+            <p>Reason : {{selectedLeaveRequest.leaveReason}}</p>
+            <p>Leave Type: {{selectedLeaveRequest.leaveTypeDTO.typeName}}</p>
+            <p>From: {{selectedLeaveRequest.fromDate}}</p>
+            <p>To: {{selectedLeaveRequest.toDate}}</p>
+            <p>Status: {{selectedLeaveRequest.status}}</p>
+          </div>
+
+          <div *ngIf="selectedLeaveRequest.reviewedBy && !isRequestEdit" class="col-md-6">
+            <p>Approved : <span>{{selectedLeaveRequest.approved ? "SUCCESS" : "DENIED"}}</span></p>
+            <p>Reviewed By: <a routerLink="/home/employees/details/{{selectedLeaveRequest.reviewedBy.employeeId}}">
+                {{selectedLeaveRequest.reviewedBy.firstName}} {{selectedLeaveRequest.reviewedBy.middleName}}
+                {{selectedLeaveRequest.reviewedBy.lastName}}
+              </a></p>
+            <p *ngIf="!selectedLeaveRequest.approved">Denied Reason: {{selectedLeaveRequest.deniedReason}}</p>
+          </div>
+
+          <div *ngIf="isRequestEdit" class="col-md-6">
+
+            <form [formGroup]="requestApproveForm" (ngSubmit)="onSubmit()">
+
+              <div *ngIf="!!approve_leave_update_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{approve_leave_update_msg}}</div>
+
+              <h5 class="text-center text-info mb-4"> Approve Request </h5>
+              <div class="form-group row">
+                <label for="approved" class="col-sm-3 col-form-label">Approved &nbsp;<span class="text-danger">* </span></label>
+                <div class="col-sm-9">
+                  <mat-radio-group id="approved" formControlName="approved" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.approved.errors }">
+                    <mat-radio-button value="true">APPROVE</mat-radio-button>
+                    <mat-radio-button class="pl-2" value="false">DENIED</mat-radio-button>
+                  </mat-radio-group>
+                  <div *ngIf="submitted && f.approved.errors" class="invalid-feedback">
+                    <div *ngIf="f.approved.errors.required">Status is required</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="deniedReason" class="col-sm-3 col-form-label">Reason&nbsp;</label>
+                <div class="col-sm-9">
+                  <input type="text" id="deniedReason" formControlName="deniedReason" class="form-control" class="form-control"
+                    placeholder="Reason" />
+                </div>
+              </div>
+
+              <button mat-raised-button color="primary" class="mt-3 btn-block" type="submit">Submit </button>
+
+            </form>
+
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Show Empty Details -->
+  <div *ngIf="!isLeaveRequestSelected">
+    <h4>Please Select Leave Request</h4>
+  </div>
+
+
+</div>

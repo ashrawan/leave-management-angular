@@ -43,7 +43,7 @@ export class AuthService {
 
   refreshToken(){
 
-    console.log("refresh token called ", localStorage.getItem("refreshToken"));
+    // console.log("refresh token called ", localStorage.getItem("refreshToken"));
 
     let data = {
       "grant_type": "refresh_token",
@@ -53,26 +53,29 @@ export class AuthService {
     if(localStorage.getItem("refreshToken") != null){
       this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data))
       .subscribe(res => {
-        console.log("Token retrieve successful", res)
-        localStorage.setItem("token", res.access_token)
-        localStorage.setItem("refreshToken", res.refresh_token)
+        // console.log("Token retrieve successful", res);
+        localStorage.setItem("token", res.access_token);
+        localStorage.setItem("refreshToken", res.refresh_token);
         return true;
       },
-        err => {console.log("refresh token also results into error ",err); this.logout()});
+        err => {
+          // console.log("refresh token also results into error ",err); 
+          this.logout()
+        });
     }else {
-      console.log("Cant use Refresh token");
+      // console.log("Cant use Refresh token");
       this._router.navigate(['/']);
     }
     return false;
   }
 
   isLoggedIn() {
-    console.log("is Logged In ", !!localStorage.getItem("token"));
+    // console.log("is Logged In ", !!localStorage.getItem("token"));
     return !!localStorage.getItem("token");
   }
 
   logout() {
-    console.log("Logged Out called");
+    // console.log("Logged Out called");
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
     this._router.navigate(['/'])

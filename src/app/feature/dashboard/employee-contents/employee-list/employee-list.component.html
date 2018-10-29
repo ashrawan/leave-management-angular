@@ -1,42 +1,40 @@
 <div class="row content-box">
-
   <div class="col-md-12">
-    <div class="list-side-table">
-      <table class="table table-hover">
-        <thead>
-          <th>S.N </th>
-          <th>Name <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Phone Number <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Email <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Supervisor <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Role <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Status <mat-icon>swap_vert</mat-icon>
-          </th>
-          <th>Options</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let employee of employees; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</td>
-            <td>{{employee.phoneNumber > 0 ? employee.phoneNumber : ''}}</td>
-            <td>{{employee.email}}</td>
-            <td><a *ngIf="employee.supervisor" routerLink="/home/employees/details/{{employee.supervisor.employeeId}}">
-                {{employee.supervisor.firstName}} {{employee.supervisor.middleName}} {{employee.supervisor.lastName}}
-              </a></td>
-            <td>{{employee.role}}</td>
-            <td [ngClass]="(employee.status=='ACTIVE')?'text-success':'text-danger'">{{employee.status}}</td>
-            <td><a routerLink="/home/employees/details/{{employee.employeeId}}">
-                <button mat-raised-button>View</button>
-              </a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
+    <table class="table table-hover">
+      <thead>
+        <th>S.N </th>
+        <th>Name <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Phone Number <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Email <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Supervisor <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Role <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Status <mat-icon>swap_vert</mat-icon>
+        </th>
+        <th>Options</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let employee of employees; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{employee.firstName}} {{employee.middleName}} {{employee.lastName}}</td>
+          <td>{{employee.phoneNumber > 0 ? employee.phoneNumber : ''}}</td>
+          <td>{{employee.email}}</td>
+          <td><a *ngIf="employee.supervisor" routerLink="/home/employees/details/{{employee.supervisor.employeeId}}">
+              {{employee.supervisor.firstName}} {{employee.supervisor.middleName}} {{employee.supervisor.lastName}}
+            </a></td>
+          <td>{{employee.role}}</td>
+          <td [ngClass]="(employee.status=='ACTIVE')?'text-success':'text-danger'">{{employee.status}}</td>
+          <td><a routerLink="/home/employees/details/{{employee.employeeId}}">
+              <button mat-raised-button>View</button>
+            </a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>

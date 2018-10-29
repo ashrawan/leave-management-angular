@@ -23,11 +23,11 @@ export class HttpInterceptorService implements HttpInterceptor {
 
     return next.handle(tokenizeReq)
       .pipe(catchError(err => {
-        console.log('Caught error', err);
+        // console.log('Caught error', err);
         if (err.status === 401) {
           const s = this._auth.refreshToken();
           if (s) {
-            console.log("inside successful refresh token call");
+            // console.log("inside successful refresh token call");
             return next.handle(tokenizeReq);
           }
         }

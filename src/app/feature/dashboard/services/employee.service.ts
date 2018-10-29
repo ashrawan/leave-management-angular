@@ -14,7 +14,7 @@ export class EmployeeService {
 
   errorHandler(error: any) {
     console.log("Employee api error ", error);
-    return throwError(new Error('oops!'));
+    return throwError(error);
   }
 
   getAllEmployees(): Observable<any> {
@@ -32,8 +32,13 @@ export class EmployeeService {
       .pipe(catchError(this.errorHandler));
   }
 
-  updateEmployee(EmployeeData, id): Observable<Employee[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employees" + id, EmployeeData)
+  updateEmployee(EmployeeData): Observable<Employee[]> {
+    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employees", EmployeeData)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getEmployeeUnderSupervision(id): Observable<Employee[]> {
+    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees/employees-under-supervision/" + id)
       .pipe(catchError(this.errorHandler));
   }
 

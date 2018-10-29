@@ -19,25 +19,16 @@
   <div class="form-group row">
     <label for="status" class="col-sm-3 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
     <div class="col-sm-9">
-      <select formControlName="status" class="form-control" placeholder="Status" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
-        <option *ngFor="let s of allLeaveTypeStatus" [ngValue]="s.value">
-          {{ s.label }}
-        </option>
-      </select>
+      <mat-radio-group formControlName="status" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+        <mat-radio-button value="ACTIVE">ACTIVE</mat-radio-button>
+        <mat-radio-button class="pl-2" value="INACTIVE">INACTIVE</mat-radio-button>
+      </mat-radio-group>
       <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
         <div *ngIf="f.status.errors.required">Status is required</div>
       </div>
     </div>
   </div>
 
-  <!-- <div class="form-group row">
-    <label for="status" class="col-sm-2 col-form-label">test &nbsp;<span class="text-danger">* </span></label>
-    <div class="col-sm-10">
-      <ng-select [searchable]="false" [items]="allLeaveTypeStatus" bindLabel="label" bindValue="value" placeholder="Select test"
-        formControlName="test" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.test.errors }">
-      </ng-select>
-    </div>
-  </div> -->
 
   <button mat-raised-button color="primary" class="mt-3 btn-block" type="submit">Submit</button>
 

@@ -1,0 +1,77 @@
+<div class="col-md-12 mt-4">
+
+  <div *ngIf="isLeaveTypeSelected" class="row">
+
+    <div class="col-md-12">
+      <div class="jumbotron">
+
+      </div>
+    </div>
+
+    <div class="col-md-8 offset-md-2">
+      <div class="col-md-12">
+        <button class="btn btn-info float-right" (click)="toggleEdit()">
+          {{isEdit ? "View Details" : "Edit"}}
+        </button>
+      </div>
+      <div class="profile-head text-center">
+        <h5><span class="font-weight-bold text-success">{{selectedleaveType.typeName}}</span>
+        </h5>
+        <p>Created Date : <span class="font-weight-bold">{{selectedleaveType.createdAt | date :'medium'}}</span></p>
+        <div mat-tab-nav-bar class="custom-tab">
+          <a mat-tab-link class="nav-link active">Info</a>
+        </div>
+      </div>
+
+      <div class="row font-italic mt-3">
+        <div *ngIf="!isEdit" class="col-md-6">
+          <p>LeaveType Id: {{selectedleaveType.leaveTypeId}}</p>
+          <p>Type Name: {{selectedleaveType.typeName}}</p>
+          <p>Status: {{selectedleaveType.status}}</p>
+        </div>
+
+        <div *ngIf="isEdit" class="col-md-6">
+          <form [formGroup]="leaveTypeUpdateForm" (ngSubmit)="onSubmit()" class="mt-2">
+
+            <div *ngIf="!!leaveType_update_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{leaveType_update_msg}}</div>
+
+            <div class="form-group row">
+              <label for="typeName" class="col-sm-3 col-form-label">Type Name&nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" id="typeName" formControlName="typeName" class="form-control" placeholder="Leave Type Name"
+                  [ngClass]="{ 'is-invalid': submitted && f.typeName.errors }" />
+                <div *ngIf="submitted && f.typeName.errors" class="invalid-feedback">
+                  <div *ngIf="f.typeName.errors.required">Type Name is required</div>
+                  <div *ngIf="f.typeName.errors.minlength">Type Name must be at least 3 characters</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="status" class="col-sm-3 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
+              <div class="col-sm-9">
+                <mat-radio-group formControlName="status" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                  <mat-radio-button value="ACTIVE">ACTIVE</mat-radio-button>
+                  <mat-radio-button class="pl-2" value="INACTIVE">INACTIVE</mat-radio-button>
+                </mat-radio-group>
+                <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                  <div *ngIf="f.status.errors.required">Status is required</div>
+                </div>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="mt-3 btn-block" type="submit">Submit</button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!isLeaveTypeSelected">
+    <h4>Please Select Leave Type</h4>
+  </div>
+
+</div>

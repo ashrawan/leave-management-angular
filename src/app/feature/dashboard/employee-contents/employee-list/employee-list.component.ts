@@ -47,7 +47,10 @@ export class EmployeeListComponent implements OnInit {
   getAllEmployees() {
     this._employeeService.getAllEmployees()
       .subscribe(
-        data => { this.employees = data.content; console.log("employees data: ", data); },
+        data => {
+        this.employees = data.content;
+          // console.log("employees data: ", data);
+        },
         error => this.errorMsg = error);
   }
 
@@ -58,7 +61,7 @@ export class EmployeeListComponent implements OnInit {
           data => {
             this.selectedEmployee = data;
             this.isEmployeeSelected = true;
-            console.log("selectedEmployee data: ", data);
+            // console.log("selectedEmployee data: ", data);
           },
           error => this.errorMsg = error);
     } else {

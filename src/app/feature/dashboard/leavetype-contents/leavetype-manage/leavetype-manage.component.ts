@@ -14,18 +14,13 @@ export class LeavetypeManageComponent implements OnInit {
 
   leaveTypeForm: FormGroup;
   submitted: boolean = false;
-
-  allLeaveTypeStatus = [
-    { "label": "Available", "value": "ACTIVE" },
-    { "label": "Not Avilable", "value": "INACTIVE" },
-  ];
-
+  
   constructor(private formBuilder: FormBuilder, private _leaveTypeService: LeaveTypeService) { }
 
   ngOnInit() {
     this.leaveTypeForm = this.formBuilder.group({
       typeName: ['', [Validators.required, Validators.minLength(3)]],
-      status: [this.allLeaveTypeStatus[0].value, Validators.required]
+      status: ["ACTIVE", Validators.required]
     });
   }
 
@@ -34,13 +29,11 @@ export class LeavetypeManageComponent implements OnInit {
   onSubmit() {
     this.submitted = true;
 
-    console.log(this.leaveTypeForm.value);
-
     // stop here if form is invalid
     if (this.leaveTypeForm.invalid) {
       return;
     }
-    console.log("success ", this.leaveTypeForm.value);
+    // console.log("success ", this.leaveTypeForm.value);
 
     this._leaveTypeService.createLeaveType(this.leaveTypeForm.value).subscribe(res => {
       this.has_error = false;
