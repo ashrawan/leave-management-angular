@@ -77,6 +77,8 @@ export class EmployeeManageComponent implements OnInit {
     this._employeeService.createEmployee(this.registerForm.value).subscribe(res => {
       this.has_error = false;
       this.create_employee_msg = "Registration Successful";
+      this.registerForm.reset();
+      this.submitted = false;
     }, error => {
       this.has_error = true;
       this.create_employee_msg = error.error.message;

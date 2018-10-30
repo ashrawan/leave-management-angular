@@ -58,6 +58,11 @@ body {
 .table mat-icon {
     vertical-align: middle;
 }
+.table-details {
+    font-weight: 100;
+    color: #767676;
+    font-style: italic;
+}
 /*
 .form-box h4 {
     letter-spacing: 1px;

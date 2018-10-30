@@ -22,6 +22,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   private isEmployeeSelected: boolean = false;
   private selectedEmployee;
+  selected_employee_msg;
   errorMsg;
   employeesUnderSupervision;
 
@@ -83,7 +84,10 @@ export class EmployeeDetailsComponent implements OnInit {
             // console.log("selectedEmployee data: ", data);
             this.initEditForm();
           },
-          error => this.errorMsg = error);
+          error => {
+            this.errorMsg = error;
+            this.selected_employee_msg = "Oops ! Can't load selected employee"
+          });
     } else {
       this.isEmployeeSelected = false;
     }
@@ -116,6 +120,8 @@ export class EmployeeDetailsComponent implements OnInit {
     this._employeeService.updateEmployee(this.employeeEditForm.value).subscribe(res => {
       this.has_error = false;
       this.update_employee_msg = "Update Successful";
+      this.employeeEditForm.reset();
+      this.submitted = false;
     }, error => {
       // console.log("ee ", error);
       this.has_error = true;

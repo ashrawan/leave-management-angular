@@ -17,6 +17,7 @@ export class LeaverequestDetailsComponent implements OnInit {
 
   private isLeaveRequestSelected: boolean = false;
   private selectedLeaveRequest;
+  selected_leave_msg;
   private requestApproveForm: FormGroup;
   private approveRequest;
   private has_error: boolean = false;
@@ -63,6 +64,8 @@ export class LeaverequestDetailsComponent implements OnInit {
       this.has_error = false;
       this.approve_leave_update_msg = "Successfully Submitted";
       this.selectedLeaveRequest = res;
+      this.requestApproveForm.reset();
+      this.submitted = false;
     }, error => {
       this.has_error = true;
       this.approve_leave_update_msg = error.error.message;
@@ -79,7 +82,10 @@ export class LeaverequestDetailsComponent implements OnInit {
             this.isLeaveRequestSelected = true;
             console.log("selectedEmployee data: ", data);
           },
-          error => this.errorMsg = error);
+          error => {
+            this.errorMsg = error;
+            this.selected_leave_msg = "Oops ! Can't load selected Leave Request"
+          });
     } else {
       this.isLeaveRequestSelected = false;
     }

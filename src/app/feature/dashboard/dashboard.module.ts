@@ -29,6 +29,8 @@ import { EmployeeDetailsComponent } from './employee-contents/employee-details/e
 import { LeaverequestDetailsComponent } from './leaverequest-contents/leaverequest-details/leaverequest-details.component';
 import { LeavetypeDetailsComponent } from './leavetype-contents/leavetype-details/leavetype-details.component';
 
+import {NgxPaginationModule} from 'ngx-pagination';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -37,7 +39,8 @@ import { LeavetypeDetailsComponent } from './leavetype-contents/leavetype-detail
     NgSelectModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxPaginationModule
   ],
   declarations: [
     NavigationComponent, 

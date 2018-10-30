@@ -81,6 +81,8 @@ export class LeavetypeDetailsComponent implements OnInit {
       this.has_error = false;
       this.selectedleaveType = res;
       this.leaveType_update_msg = "Update Successful";
+      this.leaveTypeUpdateForm.reset();
+      this.submitted = false;
     }, error => {
       this.has_error = false;
       this.leaveType_update_msg = error.error.message;

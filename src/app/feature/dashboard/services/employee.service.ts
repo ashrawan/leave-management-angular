@@ -17,8 +17,15 @@ export class EmployeeService {
     return throwError(error);
   }
 
-  getAllEmployees(): Observable<any> {
-    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees")
+  getAllEmployees(page, size, sort): Observable<any> {
+    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees",
+      {
+        params: {
+          page: page,
+          size: size,
+          sort: sort
+        }
+      })
       .pipe(catchError(this.errorHandler));
   }
 

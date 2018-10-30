@@ -10,22 +10,21 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class EmployeeListComponent implements OnInit {
 
-  private id: number;
-  private sub: any;
-  private isEdit: boolean = false;
-
-  private isEmployeeSelected: boolean = false;
-  private selectedEmployee;
   employees;
   errorMsg;
-  employeeEditForm: FormGroup;
+  
+  loading:boolean = true;
+  currentPage = 1;
+  totalElements;
+  numberOfElements;
+  size = 10;
+  sortKey = "firstName";
+  reverse:boolean = false;
 
-  constructor(private route: ActivatedRoute, private _employeeService: EmployeeService) { }
+  constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.getAllEmployees();
-    this.routeId();
-    this.employeeEditForm = this.createFormGroup();
   }
 
   createFormGroup() {
@@ -37,45 +36,30 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
-  routeId() {
-    this.sub = this.route.params.subscribe(params => {
-      this.id = +params['id']; // (+) converts string 'id' to a number
-      this.getEmployeeById(this.id);
-    });
+  getPage(page: number) {
+    this.loading = true;
+    this.currentPage = page;
+    this.getAllEmployees();
+  }
+  sort(key: string){
+    this.loading = true;
+    this.sortKey = key+",".concat(this.reverse ? 'DESC': 'ASC');
+    this.reverse = !this.reverse;
+    this.getAllEmployees();
   }
 
   getAllEmployees() {
-    this._employeeService.getAllEmployees()
+    this._employeeService.getAllEmployees(this.currentPage-1, this.size, this.sortKey)
       .subscribe(
         data => {
         this.employees = data.content;
-          // console.log("employees data: ", data);
+        this.totalElements = data.totalElements;
+        this.size = data.size;
+        this.numberOfElements = data.numberOfElements;
+        this.loading = false;
+          console.log("employees data: ", data);
         },
         error => this.errorMsg = error);
-  }
-
-  getEmployeeById(id: number) {
-    if (id > 0) {
-      this._employeeService.getEmployeeById(id)
-        .subscribe(
-          data => {
-            this.selectedEmployee = data;
-            this.isEmployeeSelected = true;
-            // console.log("selectedEmployee data: ", data);
-          },
-          error => this.errorMsg = error);
-    } else {
-      this.isEmployeeSelected = false;
-    }
-  }
-
-  toggleEdit() {
-    this.isEdit = !this.isEdit;
-  }
-
-
-  ngOnDestroy() {
-    this.sub.unsubscribe();
   }
 
 }
