@@ -1,3 +1,4 @@
+import { Constant } from './../constant/constant';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -5,7 +6,7 @@ import { Router } from '@angular/router';
 @Injectable()
 export class AuthService {
 
-  private _loginUrl = "http://127.0.0.1:8080/api/oauth/token";
+  private _loginUrl = Constant.API_ENDPOINT + "/oauth/token";
   private _client_id = "demo-client";
   private _client_secret = "demo-secret";
 
