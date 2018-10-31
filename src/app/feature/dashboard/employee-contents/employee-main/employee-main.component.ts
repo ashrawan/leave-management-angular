@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EmployeeMainComponent implements OnInit {
 
-  constructor(private _authService: AuthService) { }
+  constructor(public _authService: AuthService) { }
 
   ngOnInit() {
   }

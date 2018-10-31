@@ -15,13 +15,13 @@ export class LeaverequestDetailsComponent implements OnInit {
   errorMsg;
   isRequestEdit: boolean = false;
 
-  private isLeaveRequestSelected: boolean = false;
-  private selectedLeaveRequest;
+  isLeaveRequestSelected: boolean = false;
+  selectedLeaveRequest;
   selected_leave_msg;
-  private requestApproveForm: FormGroup;
-  private approveRequest;
-  private has_error: boolean = false;
-  private approve_leave_update_msg;
+  requestApproveForm: FormGroup;
+  approveRequest;
+  has_error: boolean = false;
+  approve_leave_update_msg;
   submitted: boolean = false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService) { }

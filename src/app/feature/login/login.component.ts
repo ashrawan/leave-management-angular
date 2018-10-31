@@ -10,11 +10,11 @@ import { AuthService } from '../dashboard/auth/auth.service';
 })
 export class LoginComponent implements OnInit {
 
-  private login_user_msg: string;
-  public has_error = false;
+  login_user_msg: string;
+  has_error = false;
   hide = true;
 
-  constructor(private _router: Router, private _auth: AuthService) { }
+  constructor(private _router: Router, public _auth: AuthService) { }
 
   ngOnInit() {
     if (localStorage.getItem("token") != null) {

@@ -20,8 +20,8 @@ export class LeavetypeDetailsComponent implements OnInit {
   leaveType_update_msg;
   has_error: boolean = false;
   submitted: boolean = false;
-  private isLeaveTypeSelected: boolean = false;
-  private selectedleaveType;
+  isLeaveTypeSelected: boolean = false;
+  selectedleaveType;
   leaveTypeUpdateForm:FormGroup;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _authService: AuthService ,private _leaveTypeService: LeaveTypeService) { }

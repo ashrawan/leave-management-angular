@@ -22,8 +22,8 @@ export class EmployeeDetailsComponent implements OnInit {
   isSelectLoading: boolean = false;
 
   expanded = false;
-  private isEmployeeSelected: boolean = false;
-  private selectedEmployee;
+  isEmployeeSelected: boolean = false;
+  selectedEmployee;
   selected_employee_msg;
   errorMsg;
   employeesUnderSupervision;
@@ -32,7 +32,7 @@ export class EmployeeDetailsComponent implements OnInit {
   has_error: boolean = false;
   submitted: boolean = false;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _authService: AuthService, private _employeeService: EmployeeService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, public _authService: AuthService, private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.routeId();

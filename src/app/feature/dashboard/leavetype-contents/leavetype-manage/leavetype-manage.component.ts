@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeavetypeManageComponent implements OnInit {
 
-  private leaveType_req_msg: string;
+  leaveType_req_msg: string;
   public has_error = false;
 
   leaveTypeForm: FormGroup;

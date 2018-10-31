@@ -13,7 +13,7 @@ import { EmployeeLeave } from '../../model/EmployeeLeave';
 })
 export class LeaverequestManageComponent implements OnInit {
 
-  private create_leave_req_msg: string;
+  create_leave_req_msg: string;
   public has_error = false;
 
   leaveTypes: Observable<any>;
