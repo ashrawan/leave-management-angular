@@ -74,10 +74,15 @@ export class AuthService {
     return !!localStorage.getItem("token");
   }
 
+  isAdmin(){
+    return localStorage.getItem("role") == "ROLE_ADMIN";
+  }
+
   logout() {
     // console.log("Logged Out called");
     localStorage.removeItem("token");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("role");
     this._router.navigate(['/'])
     // location.reload();
   }

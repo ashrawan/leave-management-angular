@@ -1,3 +1,4 @@
+import { AdminAuthGuard } from './auth/adminAuth.guard';
 import { MaterialModule } from './../../shared/material/material.module';
 import { HttpInterceptorService } from './auth/http-interceptor.service';
 import { AuthService } from './auth/auth.service';
@@ -60,7 +61,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     LeaverequestDetailsComponent,
     LeavetypeDetailsComponent
   ],
-  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AuthService,
+  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AdminAuthGuard, AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

@@ -2,13 +2,13 @@
 
   <!-- Show Employee Details -->
   <div *ngIf="isEmployeeSelected">
-    <button class="btn btn-info ml-4 float-right" (click)="toggleEdit()">
+    <button *ngIf="_authService.isAdmin()" class="btn btn-info ml-4 float-right" (click)="toggleEdit()">
       {{isEdit ? "View Profile" : "Edit Profile"}}
     </button>
     <div *ngIf="!isEdit" class="row">
       <div class="col-md-4">
         <div class="profile-img text-center">
-          <img src="assets/image/profile_image.jpg" class="employee-profile-img" alt="profile image" />
+          <img src="assets/image/placehold450.png" class="employee-profile-img" alt="profile image" />
         </div>
       </div>
       <div class="col-md-8">
@@ -67,7 +67,7 @@
     <div *ngIf="isEdit" class="row">
       <div class="col-md-4">
         <div class="profile-img">
-          <img src="assets/image/profile_image.jpg" class="employee-profile-img" alt="profile image" />
+          <img src="assets/image/placehold450.png" class="employee-profile-img" alt="profile image" />
         </div>
       </div>
       <div class="col-md-8">

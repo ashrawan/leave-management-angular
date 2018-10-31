@@ -1,3 +1,103 @@
-<div>
-  <h3>Profile works!</h3>
+<div class="content-box mt-4">
+
+  <h3 class="mb-3 col-md-8 offset-md-2 text-primary"> User Profile </h3>
+  <div class="row">
+    <div class="col-md-2">
+      <div *ngIf="user" class="text-center">
+        <img src="assets/image/placehold450.png" class="profile-img" alt="profile image" />
+        <p class="text-info pt-1">{{user.firstName}} {{user.middleName}} {{user.lastName}}</p>
+      </div>
+    </div>
+    <div class="col-md-10">
+      <mat-tab-group [dynamicHeight]="true">
+        <mat-tab label="Info">
+
+          <div class="p-1">
+            <div *ngIf="user" class="row">
+              <div class="col-md-4 border-right">
+                <p>Employee Id: {{user.employeeId}}</p>
+                <p>Full Name: {{user.firstName}}
+                  {{user.middleName}} {{user.lastName}}</p>
+                <p>Username: {{user.username}}</p>
+                <p>Phone No.: {{user.phoneNumber}}</p>
+                <p>Email: {{user.email}}</p>
+                <p>Role: {{user.role}}</p>
+                <p>Status: {{user.status}}</p>
+                <p *ngIf="user.supervisor">Supervisor: <a routerLink="/home/employees/details/{{user.supervisor.employeeId}}"
+                    routerLinkActive="active">
+                    {{user.supervisor.firstName}} {{user.supervisor.middleName}}
+                    {{user.supervisor.lastName}}
+                  </a></p>
+              </div>
+              <div class="col-md-4">
+                <div class="font-italic">
+                  <mat-expansion-panel>
+                    <mat-expansion-panel-header (click)="getEmployeeUnderSupervision()">
+                      Employee Under Supervision
+                    </mat-expansion-panel-header>
+
+                    <div *ngIf="employeesUnderSupervision">
+                      <div *ngFor="let e of employeesUnderSupervision; let i = index">
+                        <p>{{i+1}} . <a routerLink="/home/employees/details/{{e.employeeId}}">
+                            {{e.firstName}} {{e.middleName}} {{e.lastName}}
+                          </a></p>
+                      </div>
+                    </div>
+
+                  </mat-expansion-panel>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </mat-tab>
+        <!-- <mat-tab label="Analysis">
+          <ng-template matTabContent>
+            <div class="p-1">Reports</div>
+          </ng-template>
+        </mat-tab> -->
+        <mat-tab label="Change Password">
+          <ng-template matTabContent>
+            <div class="p-1">
+
+              <form #passwordUpdateForm="ngForm" (ngSubmit)="updatePassword(passwordUpdateForm)" class="col-md-4 mt-3">
+
+                <div *ngIf="!!password_update_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{password_update_msg}}</div>
+
+                <div class="row">
+                  <mat-form-field class="col-sm-12">
+                    <input matInput name="oldPassword" ngModel placeholder="Old Password" [type]="ohide ? 'password' : 'text'"
+                      required>
+                    <mat-icon matSuffix (click)="ohide = !ohide">{{ohide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <div class="row">
+                  <mat-form-field class="col-sm-12">
+                    <input matInput name="newPassword" ngModel placeholder="New Password" [type]="nhide ? 'password' : 'text'"
+                      required>
+                    <mat-icon matSuffix (click)="nhide = !nhide">{{nhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <div class="row">
+                  <mat-form-field class="col-sm-12">
+                    <input matInput name="reNewPassword" ngModel placeholder="Confirm New Password" [type]="rnhide ? 'password' : 'text'"
+                      required validateEqual="newPassword" #reNewPassword="ngModel">
+                    <mat-icon matSuffix (click)="rnhide = !rnhide">{{rnhide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </mat-form-field>
+                </div>
+
+                <button class="mt-4 btn-block" type="submit" mat-raised-button color="primary" [disabled]="passwordUpdateForm.invalid">Change
+                  Password</button>
+
+              </form>
+
+            </div>
+          </ng-template>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+
+  </div>
 </div>

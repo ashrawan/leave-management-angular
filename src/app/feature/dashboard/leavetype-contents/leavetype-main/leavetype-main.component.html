@@ -3,7 +3,7 @@
   <div mat-tab-nav-bar class="custom-tab">
     <a mat-tab-link class="nav-link" routerLink="/home/leavetypes/details" routerLinkActive="active">
       <mat-icon>event_note</mat-icon>&nbsp;All Leave Types</a>
-    <a mat-tab-link class="nav-link" routerLink="/home/leavetypes/new" routerLinkActive="active">
+    <a *ngIf="_authService.isAdmin()" mat-tab-link class="nav-link" routerLink="/home/leavetypes/new" routerLinkActive="active">
       <mat-icon>add_circle</mat-icon>&nbsp;New Leave Type</a>
   </div>
 

@@ -1,3 +1,4 @@
+import { EmployeeService } from './../services/employee.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashHomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
+    this.getUserInfo();
+  }
+
+  getUserInfo() {
+    this._employeeService.getCurrentEmployee()
+      .subscribe(
+        res => {
+          let role = res.role;
+          localStorage.setItem("role", role);
+        },
+        error => {
+          // this.login_user_msg = "Oops ! Can't load Profile";
+        });
   }
 
 }

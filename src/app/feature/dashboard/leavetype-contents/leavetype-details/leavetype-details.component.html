@@ -2,15 +2,15 @@
 
   <div *ngIf="isLeaveTypeSelected" class="row">
 
-    <div class="col-md-12">
+    <!-- <div class="col-md-12">
       <div class="jumbotron">
 
       </div>
-    </div>
+    </div> -->
 
     <div class="col-md-8 offset-md-2">
       <div class="col-md-12">
-        <button class="btn btn-info float-right" (click)="toggleEdit()">
+        <button *ngIf="_authService.isAdmin()" class="btn btn-info float-right" (click)="toggleEdit()">
           {{isEdit ? "View Details" : "Edit"}}
         </button>
       </div>

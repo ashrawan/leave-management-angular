@@ -3,7 +3,7 @@
   <div mat-tab-nav-bar class="custom-tab">
     <a mat-tab-link class="nav-link" routerLink="/home/employees/details" routerLinkActive="active">
       <mat-icon>assignment_ind</mat-icon>&nbsp;All Employees</a>
-    <a mat-tab-link class="nav-link" routerLink="/home/employees/new" routerLinkActive="active">
+    <a *ngIf="_authService.isAdmin()" mat-tab-link class="nav-link" routerLink="/home/employees/new" routerLinkActive="active">
       <mat-icon>person_add</mat-icon>&nbsp;New Employee
     </a>
   </div>

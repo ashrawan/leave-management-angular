@@ -49,8 +49,8 @@ export class EmployeeService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getEmployeeByFullName(inputvalue): Observable<any> {
-    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees/employee-by-fullname",
+  getEmployeeByFullName(inputvalue): Observable<Employee> {
+    return this.http.get<Employee>(Constant.API_ENDPOINT + "/rest/employees/employee-by-fullname",
       {
         params: {
           fullname: inputvalue
@@ -59,5 +59,19 @@ export class EmployeeService {
     )
       .pipe(catchError(this.errorHandler));
   }
+
+  updatePassword(oldPassword, newPassword): Observable<Employee> {
+    let body = new FormData();
+    body.append('oldPassword', oldPassword);
+    body.append('newPassword', newPassword);
+    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employees/update-password", body )
+      .pipe(catchError(this.errorHandler));
+  }
+
+  getCurrentEmployee(): Observable<Employee> {
+    return this.http.get<Employee>(Constant.API_ENDPOINT + "/rest/employees/me")
+      .pipe(catchError(this.errorHandler));
+  }
+
 
 }

@@ -12,11 +12,13 @@
     font-size: 40px;
     text-decoration: underline;
 }
-
 .custom-nav a:hover {
     text-decoration: none;
 }
-
 .nav-middle-spacer {
     flex: 1 1 auto;
-  }
+}
+.img-logo{
+    height: 60px;
+    padding-top: 2%;
+}

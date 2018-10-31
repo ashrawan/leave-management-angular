@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { LeaveType } from './../../model/leaveType';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { LeaveTypeService } from './../../services/leaveType.service';
@@ -23,7 +24,7 @@ export class LeavetypeDetailsComponent implements OnInit {
   private selectedleaveType;
   leaveTypeUpdateForm:FormGroup;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _leaveTypeService: LeaveTypeService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _authService: AuthService ,private _leaveTypeService: LeaveTypeService) { }
 
   ngOnInit() {
     this.routeId();

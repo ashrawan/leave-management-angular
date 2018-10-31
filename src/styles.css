@@ -63,6 +63,10 @@ body {
     color: #767676;
     font-style: italic;
 }
+.ngx-pagination li {
+    border-radius: 5px !important;
+    font-size: 1.05rem;
+}
 /*
 .form-box h4 {
     letter-spacing: 1px;

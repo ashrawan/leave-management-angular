@@ -1,3 +1,4 @@
+import { AuthService } from './../../auth/auth.service';
 import { debounceTime, distinctUntilChanged, tap, switchMap, catchError } from 'rxjs/operators';
 import { Observable, concat, of, Subject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -20,6 +21,7 @@ export class EmployeeDetailsComponent implements OnInit {
   employeeinput$ = new Subject<string>();
   isSelectLoading: boolean = false;
 
+  expanded = false;
   private isEmployeeSelected: boolean = false;
   private selectedEmployee;
   selected_employee_msg;
@@ -30,7 +32,7 @@ export class EmployeeDetailsComponent implements OnInit {
   has_error: boolean = false;
   submitted: boolean = false;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _employeeService: EmployeeService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _authService: AuthService, private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.routeId();
@@ -82,6 +84,7 @@ export class EmployeeDetailsComponent implements OnInit {
             this.isEmployeeSelected = true;
             this.employeesUnderSupervision = null;
             // console.log("selectedEmployee data: ", data);
+            this.expanded = false;
             this.initEditForm();
           },
           error => {
@@ -120,6 +123,7 @@ export class EmployeeDetailsComponent implements OnInit {
     this._employeeService.updateEmployee(this.employeeEditForm.value).subscribe(res => {
       this.has_error = false;
       this.update_employee_msg = "Update Successful";
+      this.selectedEmployee = res;
       this.employeeEditForm.reset();
       this.submitted = false;
     }, error => {

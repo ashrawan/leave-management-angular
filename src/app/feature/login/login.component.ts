@@ -1,3 +1,4 @@
+import { EmployeeService } from './../dashboard/services/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../dashboard/auth/auth.service';
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     if (localStorage.getItem("token") != null) {
-      // this._router.navigate(['/dashboard']);
+      this._router.navigate(['/home']);
     }
   }
 
@@ -34,7 +35,6 @@ export class LoginComponent implements OnInit {
         localStorage.setItem("token", res.access_token)
         localStorage.setItem("refreshToken", res.refresh_token);
         this._router.navigate(['/home']);
-        // location.reload();
       },
         error => {
           // console.log("user login error", error.error);

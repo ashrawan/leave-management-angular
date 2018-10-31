@@ -1,3 +1,4 @@
+import { EmployeeService } from './dashboard/services/employee.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService } from './dashboard/auth/auth.service';
 import { RouterModule } from '@angular/router';
