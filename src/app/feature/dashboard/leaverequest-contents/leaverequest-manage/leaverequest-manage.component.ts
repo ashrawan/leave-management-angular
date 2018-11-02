@@ -19,9 +19,10 @@ export class LeaverequestManageComponent implements OnInit {
   leaveTypes: Observable<any>;
   selectedLeaveType: LeaveType = null;
   leaveForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
 
-  constructor(private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService, private _leaveTypeService: LeaveTypeService) { }
+  constructor(private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService,
+     private _leaveTypeService: LeaveTypeService) { }
 
   ngOnInit() {
     this.leaveTypes = this._leaveTypeService.getAllLeaveTypes();
@@ -43,11 +44,11 @@ export class LeaverequestManageComponent implements OnInit {
     if (this.leaveForm.invalid) {
       return;
     }
-    let submissionData = { ...this.leaveForm.value, "leaveTypeDTO": { "leaveTypeId": this.leaveForm.value.leaveType } };
+    const submissionData = { ...this.leaveForm.value, 'leaveTypeDTO': { 'leaveTypeId': this.leaveForm.value.leaveType } };
 
     this._employeeLeaveService.createEmployeeLeave(submissionData).subscribe(res => {
       this.has_error = false;
-      this.create_leave_req_msg = "Leave Request succesfully Submitted";
+      this.create_leave_req_msg = 'Leave Request succesfully Submitted';
       this.leaveForm.reset();
       this.submitted = false;
     }, error => {

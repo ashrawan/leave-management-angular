@@ -79,8 +79,8 @@
             <div class="form-group row">
               <label for="firstName" class="col-sm-3 col-form-label">Name&nbsp;<span class="text-danger">* </span></label>
               <div class="col-sm-3">
-                <input type="text" id="firstName" formControlName="firstName" class="form-control" class="form-control"
-                  placeholder="First Name" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                <input type="text" id="firstName" formControlName="firstName" class="form-control" placeholder="First Name"
+                  [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
                 <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
                   <div *ngIf="f.firstName.errors.required">First Name is required</div>
                   <div *ngIf="f.firstName.errors.minlength">First Name must be at least 2 characters</div>
@@ -93,8 +93,8 @@
               </div>
 
               <div class="col-sm-3">
-                <input type="text" id="lastName" formControlName="lastName" class="form-control" class="form-control"
-                  placeholder="Last Name" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                <input type="text" id="lastName" formControlName="lastName" class="form-control" placeholder="Last Name"
+                  [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
                 <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
                   <div *ngIf="f.lastName.errors.required">Last Name is required</div>
                   <div *ngIf="f.lastName.errors.minlength">Last Name must be at least 2 characters</div>

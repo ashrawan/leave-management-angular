@@ -12,12 +12,12 @@ export class EmployeeLeaveService {
   constructor(private http: HttpClient) { }
 
   errorHandler(error: HttpErrorResponse) {
-    console.log("EmployeeLeave api error ", error);
+    console.log('EmployeeLeave api error ', error);
     return throwError(error);
   }
 
   getAllEmployeeLeaves(page, size, sort): Observable<any> {
-    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + "/rest/employee-leaves",
+    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + '/rest/employee-leaves',
     {
       params: {
         page: page,
@@ -29,22 +29,22 @@ export class EmployeeLeaveService {
   }
 
   getEmployeeLeaveById(id): Observable<EmployeeLeave[]> {
-    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + "/rest/employee-leaves/" + id)
+    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id)
       .pipe(catchError(this.errorHandler));
   }
 
   createEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave[]> {
-    return this.http.post<any>(Constant.API_ENDPOINT + "/rest/employee-leaves", EmployeeLeaveData)
+    return this.http.post<any>(Constant.API_ENDPOINT + '/rest/employee-leaves', EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 
   updateEmployeeLeave(EmployeeLeaveData, id): Observable<EmployeeLeave[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employee-leaves" + id, EmployeeLeaveData)
+    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves' + id, EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 
-  approveEmployeeLeave(EmployeeLeaveData):Observable<EmployeeLeave[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employee-leaves/approve-employee-leave", EmployeeLeaveData)
+  approveEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave[]> {
+    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves/approve-employee-leave', EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 

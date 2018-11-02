@@ -12,21 +12,16 @@ import { Employee } from '../../model/employee';
 })
 export class EmployeeManageComponent implements OnInit {
 
-  has_error: boolean = false;
+  has_error = false;
   create_employee_msg: String;
 
   supervisorEmployees: Observable<any>;
   employeeinput$ = new Subject<string>();
   employeeSupervisor: Employee = null;
-  isSelectLoading: boolean = false;
+  isSelectLoading = false;
 
-  submitted: boolean = false;
+  submitted = false;
   registerForm: FormGroup;
-
-  allEmployeeStatus = [
-    { "label": "Available", "value": "ACTIVE" },
-    { "label": "Not Avilable", "value": "INACTIVE" },
-  ];
 
   constructor(private formBuilder: FormBuilder, private _employeeService: EmployeeService) { }
 
@@ -41,7 +36,7 @@ export class EmployeeManageComponent implements OnInit {
       phoneNumber: ['', [Validators.required, Validators.min(1000000000), Validators.max(9999999999)]],
       email: [''],
       supervisor: [],
-      status: [this.allEmployeeStatus[0].value, Validators.required]
+      status: ['ACTIVE', Validators.required]
     });
 
 
@@ -76,7 +71,7 @@ export class EmployeeManageComponent implements OnInit {
 
     this._employeeService.createEmployee(this.registerForm.value).subscribe(res => {
       this.has_error = false;
-      this.create_employee_msg = "Registration Successful";
+      this.create_employee_msg = 'Registration Successful';
       this.registerForm.reset();
       this.submitted = false;
     }, error => {

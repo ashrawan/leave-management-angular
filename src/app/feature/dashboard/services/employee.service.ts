@@ -13,12 +13,12 @@ export class EmployeeService {
   constructor(private http: HttpClient) { }
 
   errorHandler(error: any) {
-    console.log("Employee api error ", error);
+    console.log('Employee api error ', error);
     return throwError(error);
   }
 
   getAllEmployees(page, size, sort): Observable<any> {
-    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees",
+    return this.http.get<Employee[]>(Constant.API_ENDPOINT + '/rest/employees',
       {
         params: {
           page: page,
@@ -30,27 +30,27 @@ export class EmployeeService {
   }
 
   getEmployeeById(id): Observable<Employee[]> {
-    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees/" + id)
+    return this.http.get<Employee[]>(Constant.API_ENDPOINT + '/rest/employees/' + id)
       .pipe(catchError(this.errorHandler));
   }
 
   createEmployee(EmployeeData): Observable<Employee[]> {
-    return this.http.post<any>(Constant.API_ENDPOINT + "/rest/employees", EmployeeData)
+    return this.http.post<any>(Constant.API_ENDPOINT + '/rest/employees', EmployeeData)
       .pipe(catchError(this.errorHandler));
   }
 
   updateEmployee(EmployeeData): Observable<Employee[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employees", EmployeeData)
+    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employees', EmployeeData)
       .pipe(catchError(this.errorHandler));
   }
 
   getEmployeeUnderSupervision(id): Observable<Employee[]> {
-    return this.http.get<Employee[]>(Constant.API_ENDPOINT + "/rest/employees/employees-under-supervision/" + id)
+    return this.http.get<Employee[]>(Constant.API_ENDPOINT + '/rest/employees/employees-under-supervision/' + id)
       .pipe(catchError(this.errorHandler));
   }
 
   getEmployeeByFullName(inputvalue): Observable<Employee> {
-    return this.http.get<Employee>(Constant.API_ENDPOINT + "/rest/employees/employee-by-fullname",
+    return this.http.get<Employee>(Constant.API_ENDPOINT + '/rest/employees/employee-by-fullname',
       {
         params: {
           fullname: inputvalue
@@ -61,15 +61,15 @@ export class EmployeeService {
   }
 
   updatePassword(oldPassword, newPassword): Observable<Employee> {
-    let body = new FormData();
+    const body = new FormData();
     body.append('oldPassword', oldPassword);
     body.append('newPassword', newPassword);
-    return this.http.put<any>(Constant.API_ENDPOINT + "/rest/employees/update-password", body )
+    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employees/update-password', body )
       .pipe(catchError(this.errorHandler));
   }
 
   getCurrentEmployee(): Observable<Employee> {
-    return this.http.get<Employee>(Constant.API_ENDPOINT + "/rest/employees/me")
+    return this.http.get<Employee>(Constant.API_ENDPOINT + '/rest/employees/me')
       .pipe(catchError(this.errorHandler));
   }
 

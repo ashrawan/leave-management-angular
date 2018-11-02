@@ -15,16 +15,17 @@ export class LeavetypeDetailsComponent implements OnInit {
   private id: number;
   private sub: any;
 
-  isEdit: boolean = false;
+  isEdit = false;
   errorMsg;
   leaveType_update_msg;
-  has_error: boolean = false;
-  submitted: boolean = false;
-  isLeaveTypeSelected: boolean = false;
+  has_error = false;
+  submitted = false;
+  isLeaveTypeSelected = false;
   selectedleaveType;
-  leaveTypeUpdateForm:FormGroup;
+  leaveTypeUpdateForm: FormGroup;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _authService: AuthService ,private _leaveTypeService: LeaveTypeService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
+     private _authService: AuthService , private _leaveTypeService: LeaveTypeService) { }
 
   ngOnInit() {
     this.routeId();
@@ -48,7 +49,7 @@ export class LeavetypeDetailsComponent implements OnInit {
 
   toggleEdit() {
     this.isEdit = !this.isEdit;
-    if(this.isEdit){
+    if (this.isEdit) {
       this.initLeaveTypeUpdateForm();
     }
   }
@@ -81,7 +82,7 @@ export class LeavetypeDetailsComponent implements OnInit {
     this._leaveTypeService.updateLeaveType(this.leaveTypeUpdateForm.value).subscribe(res => {
       this.has_error = false;
       this.selectedleaveType = res;
-      this.leaveType_update_msg = "Update Successful";
+      this.leaveType_update_msg = 'Update Successful';
       this.leaveTypeUpdateForm.reset();
       this.submitted = false;
     }, error => {

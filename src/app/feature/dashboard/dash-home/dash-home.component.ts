@@ -18,8 +18,8 @@ export class DashHomeComponent implements OnInit {
     this._employeeService.getCurrentEmployee()
       .subscribe(
         res => {
-          let role = res.role;
-          localStorage.setItem("role", role);
+          const role = res.role;
+          localStorage.setItem('role', role);
         },
         error => {
           // this.login_user_msg = "Oops ! Can't load Profile";

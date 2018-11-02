@@ -44,10 +44,10 @@ import {NgxPaginationModule} from 'ngx-pagination';
     NgxPaginationModule
   ],
   declarations: [
-    NavigationComponent, 
+    NavigationComponent,
     MainLayoutComponent,
-    DashHomeComponent, 
-    EmployeeMainComponent, 
+    DashHomeComponent,
+    EmployeeMainComponent,
     EmployeeListComponent,
     EmployeeManageComponent,
     LeavetypeListComponent,

@@ -15,24 +15,25 @@ export class EmployeeDetailsComponent implements OnInit {
 
   private id: number;
   private sub: any;
-  private isEdit: boolean = false;
+  private isEdit = false;
   employeeEditForm: FormGroup;
   supervisorEmployees: Observable<any>;
   employeeinput$ = new Subject<string>();
-  isSelectLoading: boolean = false;
+  isSelectLoading = false;
 
   expanded = false;
-  isEmployeeSelected: boolean = false;
+  isEmployeeSelected = false;
   selectedEmployee;
   selected_employee_msg;
   errorMsg;
   employeesUnderSupervision;
 
   update_employee_msg;
-  has_error: boolean = false;
-  submitted: boolean = false;
+  has_error = false;
+  submitted = false;
 
-  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, public _authService: AuthService, private _employeeService: EmployeeService) { }
+  constructor(private route: ActivatedRoute, private formBuilder: FormBuilder,
+    public _authService: AuthService, private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.routeId();
@@ -89,14 +90,14 @@ export class EmployeeDetailsComponent implements OnInit {
           },
           error => {
             this.errorMsg = error;
-            this.selected_employee_msg = "Oops ! Can't load selected employee"
+            this.selected_employee_msg = 'Oops ! Can\'t load selected employee';
           });
     } else {
       this.isEmployeeSelected = false;
     }
   }
 
-  getEmployeeUnderSupervision(){
+  getEmployeeUnderSupervision() {
     // console.log("employee under supervision ", this.selectedEmployee.employeeId);
     this._employeeService.getEmployeeUnderSupervision(this.selectedEmployee.employeeId).subscribe(res => {
       this.employeesUnderSupervision = res;
@@ -107,7 +108,7 @@ export class EmployeeDetailsComponent implements OnInit {
 
   toggleEdit() {
     this.isEdit = !this.isEdit;
-    this.update_employee_msg = "";
+    this.update_employee_msg = '';
   }
 
   get f() { return this.employeeEditForm.controls; }
@@ -122,14 +123,14 @@ export class EmployeeDetailsComponent implements OnInit {
     // console.log("success ", this.employeeEditForm.value);
     this._employeeService.updateEmployee(this.employeeEditForm.value).subscribe(res => {
       this.has_error = false;
-      this.update_employee_msg = "Update Successful";
+      this.update_employee_msg = 'Update Successful';
       this.selectedEmployee = res;
       this.employeeEditForm.reset();
       this.submitted = false;
     }, error => {
       // console.log("ee ", error);
       this.has_error = true;
-      this.update_employee_msg = error.error.message;;
+      this.update_employee_msg = error.error.message;
     });
 
   }

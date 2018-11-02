@@ -31,7 +31,7 @@ export class MyProfileComponent implements OnInit {
           this.user = data;
         },
         error => {
-          this.selected_user_msg = "Oops ! Can't load Profile"
+          this.selected_user_msg = 'Oops ! Can\'t load Profile';
         });
   }
 
@@ -44,24 +44,24 @@ export class MyProfileComponent implements OnInit {
   }
 
   updatePassword(form) {
-    let oldPassword = form.value.oldPassword;
-    let newPassword = form.value.newPassword;
-    let reNewPassword = form.value.reNewPassword;
+    const oldPassword = form.value.oldPassword;
+    const newPassword = form.value.newPassword;
+    const reNewPassword = form.value.reNewPassword;
 
-    if (newPassword != reNewPassword) {
+    if (newPassword !== reNewPassword) {
       this.has_error = true;
-      this.password_update_msg = "New Password and Confirm Password must be same";
+      this.password_update_msg = 'New Password and Confirm Password must be same';
       return;
     }
     this._employeeService.updatePassword(oldPassword, newPassword)
       .subscribe(res => {
         this.has_error = false;
-        this.password_update_msg = "Password Update Successful, Please Logout and Re Login !!!";
+        this.password_update_msg = 'Password Update Successful, Please Logout and Re Login !!!';
         form.reset();
       },
         error => {
           this.has_error = true;
-          this.password_update_msg = "Password Update Failed !!!";
+          this.password_update_msg = 'Password Update Failed !!!';
         });
   }
 }

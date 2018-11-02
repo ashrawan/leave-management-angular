@@ -13,16 +13,16 @@ export class LeaverequestDetailsComponent implements OnInit {
   private id: number;
   private sub: any;
   errorMsg;
-  isRequestEdit: boolean = false;
+  isRequestEdit = false;
 
-  isLeaveRequestSelected: boolean = false;
+  isLeaveRequestSelected = false;
   selectedLeaveRequest;
   selected_leave_msg;
   requestApproveForm: FormGroup;
   approveRequest;
-  has_error: boolean = false;
+  has_error = false;
   approve_leave_update_msg;
-  submitted: boolean = false;
+  submitted = false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService) { }
 
@@ -40,7 +40,7 @@ export class LeaverequestDetailsComponent implements OnInit {
   initRequestApproveForm() {
     this.requestApproveForm = this.formBuilder.group({
       leaveId: [this.selectedLeaveRequest.leaveId],
-      approved: [this.selectedLeaveRequest.approved ? "true" : "false", Validators.required],
+      approved: [this.selectedLeaveRequest.approved ? 'true' : 'false', Validators.required],
       deniedReason: [this.selectedLeaveRequest.deniedReason],
     });
   }
@@ -62,7 +62,7 @@ export class LeaverequestDetailsComponent implements OnInit {
     // console.log("success ", this.requestApproveForm.value);
     this._employeeLeaveService.approveEmployeeLeave(this.requestApproveForm.value).subscribe(res => {
       this.has_error = false;
-      this.approve_leave_update_msg = "Successfully Submitted";
+      this.approve_leave_update_msg = 'Successfully Submitted';
       this.selectedLeaveRequest = res;
       this.requestApproveForm.reset();
       this.submitted = false;
@@ -80,11 +80,11 @@ export class LeaverequestDetailsComponent implements OnInit {
           data => {
             this.selectedLeaveRequest = data;
             this.isLeaveRequestSelected = true;
-            console.log("selectedEmployee data: ", data);
+            console.log('selectedEmployee data: ', data);
           },
           error => {
             this.errorMsg = error;
-            this.selected_leave_msg = "Oops ! Can't load selected Leave Request"
+            this.selected_leave_msg = 'Oops ! Can\'t load selected Leave Request'
           });
     } else {
       this.isLeaveRequestSelected = false;

@@ -13,7 +13,7 @@ export class LeavetypeManageComponent implements OnInit {
   public has_error = false;
 
   leaveTypeForm: FormGroup;
-  submitted: boolean = false;
+  submitted = false;
 
   constructor(private formBuilder: FormBuilder, private _leaveTypeService: LeaveTypeService) { }
 
@@ -24,7 +24,7 @@ export class LeavetypeManageComponent implements OnInit {
   initLeaveTypeForm() {
     this.leaveTypeForm = this.formBuilder.group({
       typeName: ['', [Validators.required, Validators.minLength(3)]],
-      status: ["ACTIVE", Validators.required]
+      status: ['ACTIVE', Validators.required]
     });
   }
 
@@ -41,13 +41,13 @@ export class LeavetypeManageComponent implements OnInit {
 
     this._leaveTypeService.createLeaveType(this.leaveTypeForm.value).subscribe(res => {
       this.has_error = false;
-      this.leaveType_req_msg = "Leave Type Successfully Created";
+      this.leaveType_req_msg = 'Leave Type Successfully Created';
       this.leaveTypeForm.reset();
       this.submitted = false;
     }, error => {
       this.has_error = true;
       this.leaveType_req_msg = error.error.message;
-    })
+    });
   }
 
 }

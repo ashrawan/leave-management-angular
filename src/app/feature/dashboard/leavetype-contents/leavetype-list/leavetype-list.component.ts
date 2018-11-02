@@ -10,6 +10,7 @@ export class LeavetypeListComponent implements OnInit {
 
   leaveTypes;
   errorMsg;
+  loading = true;
 
   constructor(private _leaveTypeService: LeaveTypeService) { }
 
@@ -22,9 +23,21 @@ export class LeavetypeListComponent implements OnInit {
       .subscribe(
         data => {
           this.leaveTypes = data;
+          this.loading = false;
           // console.log("leaveTypes data: ", data);
         },
         error => this.errorMsg = error);
+  }
+
+  searchLeaveType(form) {
+    console.log(form.value);
+    this.loading = true;
+    this._leaveTypeService.searchByLeaveType(form.value.q).subscribe(res => {
+      this.leaveTypes = res;
+      this.loading = false;
+    }, error => {
+      this.errorMsg = error;
+    });
   }
 
 

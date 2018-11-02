@@ -1,24 +1,42 @@
 <div class="row content-box">
-
   <div class="col-md-12">
-    <div class="list-side-table">
-      <table class="table table-hover">
-        <thead>
-          <th>S.N</th>
-          <th>Leave Type </th>
-          <th>Options</th>
-        </thead>
-        <tbody>
-          <tr *ngFor="let leavetype of leaveTypes; let i = index">
-            <td>{{i+1}}</td>
-            <td>{{leavetype.typeName}}</td>
-            <td><a routerLink="/home/leavetypes/details/{{leavetype.leaveTypeId}}">
-                <button mat-raised-button>View</button></a></td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
 
-  
+    <mat-progress-bar *ngIf="loading" mode="indeterminate" class="p-1"></mat-progress-bar>
+
+    <form (ngSubmit)="searchLeaveType(searchForm)" #searchForm="ngForm" >
+
+      <div class="row mb-2">
+
+        <div class="form-group col-6">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control col-4" ngModel placeholder="Search" />
+            <div class="input-group-btn">
+              <button class="col-2" type="submit" mat-raised-button>
+                <mat-icon>search</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </form>
+
+    <table class="table table-hover">
+      <thead>
+        <th>S.N</th>
+        <th>Leave Type </th>
+        <th>Options</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let leavetype of leaveTypes; let i = index">
+          <td>{{i+1}}</td>
+          <td>{{leavetype.typeName}}</td>
+          <td><a routerLink="/home/leavetypes/details/{{leavetype.leaveTypeId}}">
+              <button mat-raised-button>View</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
 </div>
