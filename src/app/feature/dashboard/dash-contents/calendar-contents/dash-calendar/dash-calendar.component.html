@@ -1,0 +1,29 @@
+<div class="row mt-4">
+  <div class="col-md-6">
+
+    <app-calendar-header [(view)]="view" [(viewDate)]="viewDate" (viewDateChange)="fetchEvents()" (viewChange)="fetchEvents()">
+    </app-calendar-header>
+
+    <ng-template #loading>
+      <mat-spinner class="m-auto"></mat-spinner>
+      <br>
+      <h4 class="text-center">Loading events...</h4>
+    </ng-template>
+
+    <div *ngIf="events$ | async; else loading; let events">
+      <div [ngSwitch]="view">
+        <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events" [activeDayIsOpen]="activeDayIsOpen"
+          (dayClicked)="dayClicked($event.day)" (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-month-view>
+        <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-week-view>
+        <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events" (eventClicked)="eventClicked($event.event)">
+        </mwl-calendar-day-view>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 card events-list">
+    <app-events-contents></app-events-contents>
+  </div>
+</div>

@@ -3,7 +3,8 @@ import { CommonModule } from '@angular/common';
 
 import { MatButtonModule, MatCheckboxModule, MatInputModule, MatFormFieldModule, MatIconModule,
   MatMenuModule, MatToolbarModule, MatTabsModule, MatCardModule, MatTableModule, MatSlideToggleModule,
-  MatRadioModule, MatExpansionModule, MatProgressBarModule, MatListModule, MatButtonToggleModule } from '@angular/material';
+  MatRadioModule, MatExpansionModule, MatProgressBarModule, MatListModule, MatButtonToggleModule,
+  MatProgressSpinnerModule } from '@angular/material';
 
 const modules = [
   MatButtonModule,
@@ -21,7 +22,8 @@ const modules = [
   MatExpansionModule,
   MatProgressBarModule,
   MatListModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({

@@ -70,6 +70,11 @@ body {
 .list-search {
     margin-left: -8%;
 }
+.cal-month-view, .cal-week-view, .cal-day-view {
+    margin: auto;
+    /* zoom: 70%; */
+    width: 80%;
+}
 /*
 .form-box h4 {
     letter-spacing: 1px;

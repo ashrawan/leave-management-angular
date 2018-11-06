@@ -48,4 +48,14 @@ export class EmployeeLeaveService {
       .pipe(catchError(this.errorHandler));
   }
 
+  getEmployeeLeavesBetweenDate(startDate, endDate): Observable<any> {
+    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + '/rest/employee-leaves/byDate',
+    {
+      params: {
+        date1: startDate,
+        date2: endDate
+      }
+    })
+      .pipe(catchError(this.errorHandler));
+  }
 }

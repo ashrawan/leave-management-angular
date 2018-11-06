@@ -1,3 +1,4 @@
+import { DashCalendarComponent } from './dash-contents/calendar-contents/dash-calendar/dash-calendar.component';
 import { AdminAuthGuard } from './auth/adminAuth.guard';
 import { MaterialModule } from './../../shared/material/material.module';
 import { HttpInterceptorService } from './auth/http-interceptor.service';
@@ -32,6 +33,13 @@ import { LeavetypeDetailsComponent } from './leavetype-contents/leavetype-detail
 
 import {NgxPaginationModule} from 'ngx-pagination';
 
+import { CalendarModule, DateAdapter } from 'angular-calendar';
+import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
+import { EventsContentsComponent } from './dash-contents/calendar-contents/events-contents/events-contents.component';
+import { LeaverequestperiodComponent } from './dash-contents/report-contents/leaverequestperiod/leaverequestperiod.component';
+import { MainReportComponent } from './dash-contents/report-contents/main-report/main-report.component';
+import { CalendarHeaderComponent } from './dash-contents/calendar-contents/calendar-header/calendar-header.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -41,7 +49,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
     HttpClientModule,
     ReactiveFormsModule,
     MaterialModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    CalendarModule.forRoot({
+      provide: DateAdapter,
+      useFactory: adapterFactory
+    })
   ],
   declarations: [
     NavigationComponent,
@@ -59,7 +71,12 @@ import {NgxPaginationModule} from 'ngx-pagination';
     MyProfileComponent,
     EmployeeDetailsComponent,
     LeaverequestDetailsComponent,
-    LeavetypeDetailsComponent
+    LeavetypeDetailsComponent,
+    DashCalendarComponent,
+    EventsContentsComponent,
+    LeaverequestperiodComponent,
+    MainReportComponent,
+    CalendarHeaderComponent
   ],
   providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AdminAuthGuard, AuthService,
     {
