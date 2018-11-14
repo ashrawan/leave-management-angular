@@ -1,6 +1,6 @@
 export class Employee {
 
-    id: number;
+    employeeId: number;
     fullName: string;
     username: string;
     password: string;
@@ -9,6 +9,6 @@ export class Employee {
     employeeSupervisor: Employee;
 
     constructor(id) {
-       this.id = id;
+       this.employeeId = id;
     }
 }

@@ -27,21 +27,21 @@
   <div class="form-group row">
     <label for="leaveDateFrom" class="col-sm-3 col-form-label">Date From&nbsp;<span class="text-danger">*</span></label>
     <div class="col-sm-9">
-      <input type="date" id="leaveDateFrom" formControlName="fromDate" class="form-control" placeholder="Leave Date From"
+      <input type="text" id="leaveDateFrom" formControlName="fromDate" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }" placeholder="Date From"
         [ngClass]="{ 'is-invalid': submitted && f.fromDate.errors }" />
       <div *ngIf="submitted && f.fromDate.errors" class="invalid-feedback">
-        <div *ngIf="f.fromDate.errors.required">Status is required</div>
+        <div *ngIf="f.fromDate.errors.required">Date From is required</div>
       </div>
     </div>
   </div>
 
   <div class="form-group row">
-    <label for="leaveDateTo" class="col-sm-3 col-form-label">Date From&nbsp;<span class="text-danger">*</span></label>
+    <label for="leaveDateTo" class="col-sm-3 col-form-label">Date To&nbsp;<span class="text-danger">*</span></label>
     <div class="col-sm-9">
-      <input type="date" id="leaveDateTo" formControlName="toDate" class="form-control" placeholder="Leave Date To"
+      <input type="text" id="leaveDateTo" formControlName="toDate" class="form-control" bsDatepicker [minDate]="minDate" [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }" placeholder="Date To"
         [ngClass]="{ 'is-invalid': submitted && f.toDate.errors }" />
       <div *ngIf="submitted && f.toDate.errors" class="invalid-feedback">
-        <div *ngIf="f.toDate.errors.required">Leave Reason is required</div>
+        <div *ngIf="f.toDate.errors.required">Date To is required</div>
       </div>
     </div>
   </div>

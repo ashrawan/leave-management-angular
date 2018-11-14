@@ -13,6 +13,8 @@ import { EmployeeLeave } from '../../model/EmployeeLeave';
 })
 export class LeaverequestManageComponent implements OnInit {
 
+  minDate: Date;
+
   create_leave_req_msg: string;
   public has_error = false;
 
@@ -22,7 +24,9 @@ export class LeaverequestManageComponent implements OnInit {
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService,
-     private _leaveTypeService: LeaveTypeService) { }
+     private _leaveTypeService: LeaveTypeService) {
+      this.minDate = new Date();
+      }
 
   ngOnInit() {
     this.leaveTypes = this._leaveTypeService.getAllLeaveTypes();

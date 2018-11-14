@@ -39,7 +39,7 @@ export class EmployeeLeaveService {
   }
 
   updateEmployeeLeave(EmployeeLeaveData, id): Observable<EmployeeLeave[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves' + id, EmployeeLeaveData)
+    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id, EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 

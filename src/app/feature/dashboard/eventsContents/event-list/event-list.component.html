@@ -1,0 +1,47 @@
+<div class="row content-box">
+  <div class="col-md-12">
+
+    <div *ngIf="!isEdit">
+      <mat-progress-bar *ngIf="loading" mode="indeterminate" class="p-1"></mat-progress-bar>
+
+      <table class="table table-hover">
+        <thead>
+          <th>S.N</th>
+          <th (click)="sort('event.title')">Title <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th (click)="sort('fromDate')">From Date <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th (click)="sort('toDate')">To Date <mat-icon>swap_vert</mat-icon>
+          </th>
+          <th>Options</th>
+        </thead>
+        <tbody *ngIf="events">
+          <tr *ngFor="let event of events | paginate: { itemsPerPage: size, currentPage: currentPage,  totalItems: totalElements }; let i = index">
+            <td>{{i+1}}</td>
+            <td>{{event.title}}</td>
+            <td>{{event.startDate}}</td>
+            <td>{{event.endDate}}</td>
+            <td><a routerLink="/home/event/details/{{event.eventId}}">
+              <button mat-raised-button>View</button></a></td>
+            <!-- <td><button (click)="selectEvent(event)" mat-raised-button>Edit</button></td> -->
+          </tr>
+        </tbody>
+      </table>
+
+      <div *ngIf="events" class="row col-md-12 mt-4">
+        <div class="col-md-auto">
+          <span class="table-details">Showing {{(currentPage-1) * size +1}} to {{(currentPage-1) *
+            size
+            + numberOfElements }} of {{totalElements}}</span>
+        </div>
+        <div class="col">
+          <pagination-controls class="float-right" (pageChange)="getPage($event)"></pagination-controls>
+        </div>
+      </div>
+
+    </div>
+
+    <app-events-manage *ngIf="isEdit"></app-events-manage>>
+  </div>
+
+</div>

@@ -1,3 +1,6 @@
+import { EventDetailsComponent } from './../eventsContents/event-details/event-details.component';
+import { EventListComponent } from './../eventsContents/event-list/event-list.component';
+import { EventsManageComponent } from './../eventsContents/events-manage/events-manage.component';
 import { AdminAuthGuard } from './../auth/adminAuth.guard';
 import { LeavetypeDetailsComponent } from './../leavetype-contents/leavetype-details/leavetype-details.component';
 import { EmployeeDetailsComponent } from './../employee-contents/employee-details/employee-details.component';
@@ -17,6 +20,7 @@ import { LeavetypeMainComponent } from '../leavetype-contents/leavetype-main/lea
 import { LeavetypeManageComponent } from '../leavetype-contents/leavetype-manage/leavetype-manage.component';
 import { LeaverequestListComponent } from '../leaverequest-contents/leaverequest-list/leaverequest-list.component';
 import { LeaverequestDetailsComponent } from '../leaverequest-contents/leaverequest-details/leaverequest-details.component';
+import { EventsMainComponent } from '../eventsContents/events-main/events-main.component';
 
 const routes: Routes = [
   {
@@ -28,30 +32,40 @@ const routes: Routes = [
           path: 'employees',
           component: EmployeeMainComponent,
           children: [
-            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
+            {path: '', redirectTo: 'details', pathMatch: 'full'},
             {path: 'details', component: EmployeeListComponent},
             {path: 'details/:id', component: EmployeeDetailsComponent},
             {path: 'new', component: EmployeeManageComponent, canActivate: [AdminAuthGuard]}
           ]
         },
         {
+          path: 'leaverequests',
+          component: LeaverequestMainComponent,
+          children: [
+            {path: '', redirectTo: 'details', pathMatch: 'full'},
+            {path: 'details', component: LeaverequestListComponent},
+            {path: 'details/:id', component: LeaverequestDetailsComponent},
+            {path: 'new', component: LeaverequestManageComponent}
+          ]
+        },
+        {
           path: 'leavetypes',
           component: LeavetypeMainComponent,
           children: [
-            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
+            {path: '', redirectTo: 'details', pathMatch: 'full'},
             {path: 'details', component: LeavetypeListComponent},
             {path: 'details/:id', component: LeavetypeDetailsComponent},
             {path: 'new', component: LeavetypeManageComponent, canActivate: [AdminAuthGuard]}
           ]
         },
         {
-          path: 'leaverequests',
-          component: LeaverequestMainComponent,
+          path: 'event',
+          component: EventsMainComponent,
           children: [
-            {path: '', redirectTo: 'details', pathMatch: 'full'}, 
-            {path: 'details', component: LeaverequestListComponent},
-            {path: 'details/:id', component: LeaverequestDetailsComponent},
-            {path: 'new', component: LeaverequestManageComponent}
+            {path: '', redirectTo: 'details', pathMatch: 'full'},
+            {path: 'details', component: EventListComponent},
+            {path: 'details/:id', component: EventDetailsComponent},
+            {path: 'new', component: EventsManageComponent, canActivate: [AdminAuthGuard]}
           ]
         },
         { path: 'profile', component: MyProfileComponent },

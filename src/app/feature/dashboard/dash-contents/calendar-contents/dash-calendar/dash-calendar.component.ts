@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
+import { Event } from './../../../model/event';
+import { EventService } from './../../../services/event.service';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
 import {
   isSameMonth,
   isSameDay,
@@ -9,7 +11,8 @@ import {
   endOfWeek,
   startOfDay,
   endOfDay,
-  format
+  format,
+  getDay
 } from 'date-fns';
 import {
   CalendarEvent,
@@ -17,13 +20,6 @@ import {
 } from 'angular-calendar';
 import { Subject, Observable, of, from } from 'rxjs';
 import { map } from 'rxjs/operators';
-
-interface LeaveEvents {
-  id: number;
-  title: string;
-  dateFrom: string;
-  dateTo: string;
-}
 
 @Component({
   selector: 'app-dash-calendar',
@@ -38,31 +34,12 @@ export class DashCalendarComponent implements OnInit {
   activeDayIsOpen = false;
   refresh: Subject<any> = new Subject();
   excludeDays: number[] = [];
-  events$: Observable<Array<CalendarEvent<{ leaveEvents: LeaveEvents }>>>;
+  events$: Observable<Array<CalendarEvent<{ events: Event }>>>;
 
-  leaveEventsList = {
-    'results': [
-      {
-        'id': 1,
-        'title': 'leave from emp1',
-        'dateFrom': '2018-11-06',
-        'dateTo': '2018-11-06',
-      },
-      {
-        'id': 2,
-        'title': 'leave from emp2',
-        'dateFrom': '2018-11-08',
-        'dateTo': '2018-11-10',
-      }
-    ]
-  };
-
-  constructor() { }
+  constructor(private eventService: EventService, private _router: Router) { }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.fetchEvents();
-    }, 500);
+    this.fetchEvents();
   }
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
@@ -79,32 +56,38 @@ export class DashCalendarComponent implements OnInit {
     }
   }
 
-  eventClicked(event: CalendarEvent<{ leaveEvent: LeaveEvents }>): void {
-    console.log('Event clicked', event.meta.leaveEvent);
+  eventClicked(currEvent: CalendarEvent<{ event: Event }>): void {
+    console.log('Event clicked', currEvent.meta.event);
+    const clickedEvent = currEvent.meta.event;
+    if (clickedEvent.eventType === 'leave') {
+      console.log('This is leave event', clickedEvent.eventId);
+      this._router.navigate(['/home/leaverequests/details/' + clickedEvent.eventId]);
+    } else {
+      console.log('This is a event', clickedEvent.eventId);
+      this._router.navigate(['/home/event/details/' + clickedEvent.eventId]);
+    }
   }
 
   fetchEvents(): void {
-    this.events$ = this.getAllEventsList()
+    const getStart: any = { month: startOfMonth, week: startOfWeek, day: startOfDay }[this.view];
+    const getEnd: any = { month: endOfMonth, week: endOfWeek, day: endOfDay }[this.view];
+    const date1 = format(getStart(this.viewDate), 'YYYY-MM-DD');
+    const date2 = format(getEnd(this.viewDate), 'YYYY-MM-DD');
+    this.events$ = this.eventService.getLeaveAndEventsBetweenDate(date1, date2)
       .pipe(
         map((results: any) => {
-          console.log(results);
-          return results.map((leaveEvent: LeaveEvents) => {
+          return results.map((event: Event) => {
             return {
-              title: leaveEvent.title,
-              start: startOfDay(new Date(leaveEvent.dateFrom)),
-              end: endOfDay(new Date(leaveEvent.dateTo)),
+              title: event.title,
+              start: startOfDay(new Date(event.startDate)),
+              end: endOfDay(new Date(event.endDate)),
               allDay: true,
+              color: event.eventType === 'leave' ? { primary: '#2f79ef' } : {primary: '#e21841'},
               meta: {
-                leaveEvent
+                event
               }
             };
           });
         }));
   }
-
-  getAllEventsList(): Observable<LeaveEvents[]> {
-    console.log('leave event list ', this.leaveEventsList);
-    return of(this.leaveEventsList.results);
-  }
-
 }

@@ -87,6 +87,7 @@ export class EmployeeDetailsComponent implements OnInit {
             // console.log("selectedEmployee data: ", data);
             this.expanded = false;
             this.initEditForm();
+            this.getEmployeeUnderSupervision();
           },
           error => {
             this.errorMsg = error;

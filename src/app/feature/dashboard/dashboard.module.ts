@@ -1,3 +1,4 @@
+import { EventService } from './services/event.service';
 import { DashCalendarComponent } from './dash-contents/calendar-contents/dash-calendar/dash-calendar.component';
 import { AdminAuthGuard } from './auth/adminAuth.guard';
 import { MaterialModule } from './../../shared/material/material.module';
@@ -14,7 +15,7 @@ import { NavigationComponent } from './../../core/navigation/navigation.componen
 import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.module';
 
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { DashHomeComponent } from './dash-home/dash-home.component';
 import { MainLayoutComponent } from './main-layout/main-layout.component';
 import { EmployeeManageComponent } from './employee-contents/employee-manage/employee-manage.component';
@@ -40,6 +41,12 @@ import { LeaverequestperiodComponent } from './dash-contents/report-contents/lea
 import { MainReportComponent } from './dash-contents/report-contents/main-report/main-report.component';
 import { CalendarHeaderComponent } from './dash-contents/calendar-contents/calendar-header/calendar-header.component';
 
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { EventsManageComponent } from './eventsContents/events-manage/events-manage.component';
+import { EventsMainComponent } from './eventsContents/events-main/events-main.component';
+import { EventDetailsComponent } from './eventsContents/event-details/event-details.component';
+import { EventListComponent } from './eventsContents/event-list/event-list.component';
+
 @NgModule({
   imports: [
     CommonModule,
@@ -48,6 +55,7 @@ import { CalendarHeaderComponent } from './dash-contents/calendar-contents/calen
     NgSelectModule,
     HttpClientModule,
     ReactiveFormsModule,
+    BsDatepickerModule.forRoot(),
     MaterialModule,
     NgxPaginationModule,
     CalendarModule.forRoot({
@@ -76,9 +84,13 @@ import { CalendarHeaderComponent } from './dash-contents/calendar-contents/calen
     EventsContentsComponent,
     LeaverequestperiodComponent,
     MainReportComponent,
-    CalendarHeaderComponent
+    CalendarHeaderComponent,
+    EventsManageComponent,
+    EventsMainComponent,
+    EventDetailsComponent,
+    EventListComponent,
   ],
-  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, AuthGuard, AdminAuthGuard, AuthService,
+  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, EventService, DatePipe, AuthGuard, AdminAuthGuard, AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,

@@ -1,0 +1,82 @@
+<div class="col-md-12 mt-4">
+
+  <div *ngIf="isEventSelected" class="row">
+
+    <div class="col-md-8 offset-md-2">
+      <div class="col-md-12">
+        <button *ngIf="_authService.isAdmin()" class="btn btn-info float-right" (click)="toggleEdit()">
+          {{isEdit ? "View Details" : "Edit"}}
+        </button>
+      </div>
+      <div class="profile-head text-center">
+        <h5><span class="font-weight-bold text-success">{{selectedEvent.title}}</span>
+        </h5>
+        <p>Created Date : <span class="font-weight-bold">{{selectedEvent.createdAt | date :'medium'}}</span></p>
+        <div mat-tab-nav-bar class="custom-tab">
+          <a mat-tab-link class="nav-link active">Info</a>
+        </div>
+      </div>
+
+      <div class="row font-italic mt-3">
+        <div *ngIf="!isEdit" class="col-md-6">
+          <p>Event Id: {{selectedEvent.eventId}}</p>
+          <p>Type Name: {{selectedEvent.title}}</p>
+          <p>Start Date: {{selectedEvent.startDate}}</p>
+          <p>End Date: {{selectedEvent.endDate}}</p>
+        </div>
+
+        <div *ngIf="isEdit" class="col-md-6">
+          <form [formGroup]="eventUpdateForm" (ngSubmit)="onSubmit()" class="mt-2">
+
+            <div *ngIf="!!event_update_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{event_update_msg}}</div>
+
+            <div class="form-group row">
+              <label for="title" class="col-sm-3 col-form-label">Title &nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" id="title" formControlName="title" class="form-control" placeholder="Event Title"
+                  [ngClass]="{ 'is-invalid': submitted && f.title.errors }" />
+                <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                  <div *ngIf="f.title.errors.required">Title is required</div>
+                  <div *ngIf="f.title.errors.minlength">Title must be at least 3 characters</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="startDate" class="col-sm-3 col-form-label">Start Date&nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" id="startDate" formControlName="startDate" class="form-control" bsDatepicker
+                  [minDate]="minDate" [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }" placeholder="Date From"
+                  [ngClass]="{ 'is-invalid': submitted && f.startDate.errors }" />
+                <div *ngIf="submitted && f.startDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.startDate.errors.required">Start Date is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="endDate" class="col-sm-3 col-form-label">End Date &nbsp;<span class="text-danger">*</span></label>
+              <div class="col-sm-9">
+                <input type="text" id="endDate" formControlName="endDate" class="form-control" bsDatepicker [minDate]="minDate"
+                  [bsConfig]="{ containerClass: 'theme-dark-blue', dateInputFormat: 'YYYY-MM-DD' }" placeholder="Date To" [ngClass]="{ 'is-invalid': submitted && f.endDate.errors }" />
+                <div *ngIf="submitted && f.endDate.errors" class="invalid-feedback">
+                  <div *ngIf="f.endDate.errors.required">End Date is required</div>
+                </div>
+              </div>
+            </div>
+
+            <button mat-raised-button color="primary" class="mt-3 btn-block" type="submit">Submit</button>
+
+          </form>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="!isEventSelected">
+    <h4>Please Select Event </h4>
+  </div>
+
+</div>
