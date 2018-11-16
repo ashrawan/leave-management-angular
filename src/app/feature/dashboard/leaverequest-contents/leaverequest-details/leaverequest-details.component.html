@@ -50,11 +50,11 @@
           </div>
 
           <div *ngIf="selectedLeaveRequest.reviewedBy && !isRequestEdit" class="col-md-6">
-            <p>Approved : <span>{{selectedLeaveRequest.approved ? "SUCCESS" : "DENIED"}}</span></p>
             <p>Reviewed By: <a routerLink="/home/employees/details/{{selectedLeaveRequest.reviewedBy.employeeId}}">
                 {{selectedLeaveRequest.reviewedBy.firstName}} {{selectedLeaveRequest.reviewedBy.middleName}}
                 {{selectedLeaveRequest.reviewedBy.lastName}}
               </a></p>
+              <p>Request: {{selectedLeaveRequest.status}}</p>
             <p *ngIf="!selectedLeaveRequest.approved">Denied Reason: {{selectedLeaveRequest.deniedReason}}</p>
           </div>
 
@@ -66,14 +66,14 @@
 
               <h5 class="text-center text-info mb-4"> Approve Request </h5>
               <div class="form-group row">
-                <label for="approved" class="col-sm-3 col-form-label">Approved &nbsp;<span class="text-danger">* </span></label>
+                <label for="status" class="col-sm-3 col-form-label">Status &nbsp;<span class="text-danger">* </span></label>
                 <div class="col-sm-9">
-                  <mat-radio-group id="approved" formControlName="approved" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.approved.errors }">
-                    <mat-radio-button value="true">APPROVE</mat-radio-button>
-                    <mat-radio-button class="pl-2" value="false">DENIED</mat-radio-button>
+                  <mat-radio-group id="status" formControlName="status" class="custom-ngSelect" [ngClass]="{ 'is-invalid': submitted && f.status.errors }">
+                    <mat-radio-button value="APPROVED">APPROVED</mat-radio-button>
+                    <mat-radio-button class="pl-2" value="DENIED">DENIED</mat-radio-button>
                   </mat-radio-group>
-                  <div *ngIf="submitted && f.approved.errors" class="invalid-feedback">
-                    <div *ngIf="f.approved.errors.required">Status is required</div>
+                  <div *ngIf="submitted && f.status.errors" class="invalid-feedback">
+                    <div *ngIf="f.status.errors.required">Status is required</div>
                   </div>
                 </div>
               </div>

@@ -1,0 +1,6 @@
+.lrequest-bar-char{
+    margin-top: 10%;
+    min-height: 50vh;
+    max-height: 63vh;
+    overflow: auto;
+}

@@ -1,3 +1,16 @@
-<div class="">
-  <h5>Chart: Leave request this week, this month, last three month</h5>
+<div class="lrequest-bar-char">
+  <ngx-charts-bar-vertical-2d
+    [scheme]="colorScheme"
+    [results]="adata"
+    [gradient]="gradient"
+    [xAxis]="showXAxis"
+    [yAxis]="showYAxis"
+    [legend]="showLegend"
+    [legendTitle]="legendTitle"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    (select)="onSelect($event)">
+  </ngx-charts-bar-vertical-2d>
 </div>

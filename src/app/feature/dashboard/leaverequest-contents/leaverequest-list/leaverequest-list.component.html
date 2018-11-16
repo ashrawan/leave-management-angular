@@ -16,8 +16,6 @@
         </th>
         <th (click)="sort('status')">Status <mat-icon>swap_vert</mat-icon>
         </th>
-        <th (click)="sort('fromDate')">Approved <mat-icon>swap_vert</mat-icon>
-        </th>
         <th>Options</th>
       </thead>
       <tbody *ngIf="leaveRequests">
@@ -30,8 +28,7 @@
           <td>{{leaverequest.leaveTypeDTO.typeName}}</td>
           <td>{{leaverequest.fromDate}}</td>
           <td>{{leaverequest.toDate}}</td>
-          <td [ngClass]="(leaverequest.status=='PENDING')?'text-success':'text-danger'">{{leaverequest.status}}</td>
-          <td><span *ngIf="leaverequest.reviewedBy">{{leaverequest.approved ? "SUCCESS" : "DENIED"}}</span></td>
+          <td [ngClass]="(leaverequest.status=='APPROVED')?'text-success':'text-danger'">{{leaverequest.status}}</td>
           <td><a routerLink="/home/leaverequests/details/{{leaverequest.leaveId}}">
               <button mat-raised-button>View</button></a></td>
         </tr>

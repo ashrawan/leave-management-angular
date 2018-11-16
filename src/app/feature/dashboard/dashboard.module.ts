@@ -36,7 +36,6 @@ import {NgxPaginationModule} from 'ngx-pagination';
 
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { EventsContentsComponent } from './dash-contents/calendar-contents/events-contents/events-contents.component';
 import { LeaverequestperiodComponent } from './dash-contents/report-contents/leaverequestperiod/leaverequestperiod.component';
 import { MainReportComponent } from './dash-contents/report-contents/main-report/main-report.component';
 import { CalendarHeaderComponent } from './dash-contents/calendar-contents/calendar-header/calendar-header.component';
@@ -46,6 +45,7 @@ import { EventsManageComponent } from './eventsContents/events-manage/events-man
 import { EventsMainComponent } from './eventsContents/events-main/events-main.component';
 import { EventDetailsComponent } from './eventsContents/event-details/event-details.component';
 import { EventListComponent } from './eventsContents/event-list/event-list.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
 
 @NgModule({
   imports: [
@@ -58,6 +58,7 @@ import { EventListComponent } from './eventsContents/event-list/event-list.compo
     BsDatepickerModule.forRoot(),
     MaterialModule,
     NgxPaginationModule,
+    NgxChartsModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -81,7 +82,6 @@ import { EventListComponent } from './eventsContents/event-list/event-list.compo
     LeaverequestDetailsComponent,
     LeavetypeDetailsComponent,
     DashCalendarComponent,
-    EventsContentsComponent,
     LeaverequestperiodComponent,
     MainReportComponent,
     CalendarHeaderComponent,

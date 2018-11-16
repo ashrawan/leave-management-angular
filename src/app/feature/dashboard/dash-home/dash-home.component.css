@@ -1,8 +1,5 @@
 .dash-calendar {
     min-height: 60vh;
+    max-height: 70vh;
+    overflow: auto;
 }
-/* .events-list {
-    margin-top: 5%;
-    text-align: center;
-    padding: 1%;
-} */

@@ -40,8 +40,8 @@ export class LeaverequestDetailsComponent implements OnInit {
   initRequestApproveForm() {
     this.requestApproveForm = this.formBuilder.group({
       leaveId: [this.selectedLeaveRequest.leaveId],
-      approved: [this.selectedLeaveRequest.approved ? 'true' : 'false', Validators.required],
       deniedReason: [this.selectedLeaveRequest.deniedReason],
+      status: [this.selectedLeaveRequest.status, Validators.required]
     });
   }
 
@@ -84,7 +84,7 @@ export class LeaverequestDetailsComponent implements OnInit {
           },
           error => {
             this.errorMsg = error;
-            this.selected_leave_msg = 'Oops ! Can\'t load selected Leave Request'
+            this.selected_leave_msg = 'Oops ! Can\'t load selected Leave Request';
           });
     } else {
       this.isLeaveRequestSelected = false;
