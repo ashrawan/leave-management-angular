@@ -1,3 +1,4 @@
+import { ReportService } from './services/report.service';
 import { EventService } from './services/event.service';
 import { DashCalendarComponent } from './dash-contents/calendar-contents/dash-calendar/dash-calendar.component';
 import { AdminAuthGuard } from './auth/adminAuth.guard';
@@ -90,7 +91,8 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     EventDetailsComponent,
     EventListComponent,
   ],
-  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, EventService, DatePipe, AuthGuard, AdminAuthGuard, AuthService,
+  providers: [EmployeeService, LeaveTypeService, EmployeeLeaveService, ReportService, EventService,
+    DatePipe, AuthGuard, AdminAuthGuard, AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
