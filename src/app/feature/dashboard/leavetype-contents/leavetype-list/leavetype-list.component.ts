@@ -30,7 +30,7 @@ export class LeavetypeListComponent implements OnInit {
   }
 
   searchLeaveType(form) {
-    console.log(form.value);
+    // console.log(form.value);
     this.loading = true;
     this._leaveTypeService.searchByLeaveType(form.value.q).subscribe(res => {
       this.leaveTypes = res;

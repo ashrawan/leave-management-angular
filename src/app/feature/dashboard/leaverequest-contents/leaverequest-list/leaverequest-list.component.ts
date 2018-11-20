@@ -54,7 +54,7 @@ export class LeaverequestListComponent implements OnInit {
           this.size = data.size;
           this.numberOfElements = data.numberOfElements;
           this.loading = false;
-          console.log('employees data: ', data);
+          // console.log('employees data: ', data);
         },
         error => this.errorMsg = error);
   }

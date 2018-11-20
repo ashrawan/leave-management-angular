@@ -1,4 +1,3 @@
-import { EmployeeService } from './../dashboard/services/employee.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../dashboard/auth/auth.service';
@@ -28,7 +27,7 @@ export class LoginComponent implements OnInit {
       .subscribe(res => {
         // console.log("Token reterive successful", res)
         this.has_error = false;
-        this.login_user_msg = 'Sucess, Loading... !!!';
+        this.login_user_msg = 'Login in, Please wait... !!!';
         localStorage.setItem('token', res.access_token);
         localStorage.setItem('refreshToken', res.refresh_token);
         this._router.navigate(['/home']);

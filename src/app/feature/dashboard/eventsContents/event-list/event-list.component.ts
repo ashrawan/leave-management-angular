@@ -55,7 +55,7 @@ export class EventListComponent implements OnInit {
           this.numberOfElements = data.numberOfElements;
           this.loading = false;
           this.isEdit = false;
-          console.log('Events data: ', data);
+          // console.log('Events data: ', data);
         },
         error => this.errorMsg = error);
   }

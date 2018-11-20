@@ -80,7 +80,7 @@ export class LeaverequestDetailsComponent implements OnInit {
           data => {
             this.selectedLeaveRequest = data;
             this.isLeaveRequestSelected = true;
-            console.log('selectedEmployee data: ', data);
+            // console.log('selectedEmployee data: ', data);
           },
           error => {
             this.errorMsg = error;
@@ -91,6 +91,7 @@ export class LeaverequestDetailsComponent implements OnInit {
     }
   }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnDestroy() {
     this.sub.unsubscribe();
   }

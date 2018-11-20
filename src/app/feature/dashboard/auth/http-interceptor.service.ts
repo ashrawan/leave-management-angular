@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { throwError, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 import { AuthService } from './auth.service';
 
 @Injectable()
@@ -12,27 +12,43 @@ export class HttpInterceptorService implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    let tokenizeReq;
+    let apiRequest;
     if (localStorage.getItem('token') != null) {
-      tokenizeReq = request.clone({
-        setHeaders: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-        }
-      });
-    } else { tokenizeReq = request.clone({}); }
+      apiRequest = this.tokenizeReq(request);
+    } else { apiRequest = this.normalReq(request); }
 
-    return next.handle(tokenizeReq)
-      .pipe(catchError(err => {
-        // console.log('Caught error', err);
-        if (err.status === 401) {
-          const s = this._auth.refreshToken();
-          if (s) {
-            // console.log("inside successful refresh token call");
-            return next.handle(tokenizeReq);
+    return next
+      .handle(apiRequest)
+      .pipe(
+        // tap((ev: HttpEvent<any>) => {
+
+        // }),
+        catchError(response => {
+          if (response instanceof HttpErrorResponse) {
+            switch (response.status) {
+              case 401:
+              // console.log('call refresh token');
+              this._auth.refreshToken(apiRequest, next);
+              break;
+            }
+            // console.log('Processing http error', response);
           }
-        }
-        return throwError(err);
-      }));
+
+          return throwError(response);
+        })
+      );
+  }
+
+  tokenizeReq(request: HttpRequest<any>) {
+    return request.clone({
+      setHeaders: {
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      }
+    });
+  }
+
+  normalReq(request: HttpRequest<any>) {
+    return request.clone({});
   }
 
 }

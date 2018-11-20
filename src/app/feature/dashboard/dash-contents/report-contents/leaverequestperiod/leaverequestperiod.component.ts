@@ -1,7 +1,6 @@
 import { ChartDataModel } from './../../../model/chartData';
 import { adata } from './../../../../../shared/data';
-import { Component, OnInit } from '@angular/core';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { Component } from '@angular/core';
 import { ReportService } from '../../../services/report.service';
 
 @Component({
@@ -52,14 +51,13 @@ export class LeaverequestperiodComponent {
     this._reportService.getLeaveReport().subscribe(res => {
       this.leaveData = this.manipulateData(res);
     }, error => {
-      console.log(error);
+      // console.log(error);
     });
   }
 
   manipulateData(data) {
 
     const leaveTypeKeyHolder = [];
-    const statusKeyHolder = [];
     const finalData = [];
 
     const helper = {};

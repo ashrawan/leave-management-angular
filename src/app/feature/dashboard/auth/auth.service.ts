@@ -1,6 +1,8 @@
+import { catchError } from 'rxjs/operators';
+import { Observable, throwError, of } from 'rxjs';
 import { Constant } from './../constant/constant';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpRequest } from '@angular/common/http';
 import { Router } from '@angular/router';
 
 @Injectable()
@@ -20,6 +22,7 @@ export class AuthService {
   // convert to form data
   getFormUrlEncoded(toConvert) {
     const formBody = [];
+    // tslint:disable-next-line:forin
     for (const property in toConvert) {
       const encodedKey = encodeURIComponent(property);
       const encodedValue = encodeURIComponent(toConvert[property]);
@@ -28,6 +31,10 @@ export class AuthService {
     return formBody.join('&');
   }
 
+  errorHandler(error: any) {
+    console.log('Auth Service api error ', error);
+    return throwError(error);
+  }
 
   loginUser(user) {
     localStorage.removeItem('token');
@@ -42,32 +49,40 @@ export class AuthService {
     return this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data), { headers: this.tokenHeader });
   }
 
-  refreshToken() {
-
-    // console.log("refresh token called ", localStorage.getItem("refreshToken"));
-
-    const data = {
-      'grant_type': 'refresh_token',
-      'refresh_token': localStorage.getItem('refreshToken')
-    };
+  refreshToken(request: HttpRequest<any>, next: HttpHandler) {
 
     if (localStorage.getItem('refreshToken') != null) {
-      this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data))
+      this.callRefreshToken()
         .subscribe(res => {
-          // console.log("Token retrieve successful", res);
+          // console.log('Token retrieve successful', res);
           localStorage.setItem('token', res.access_token);
           localStorage.setItem('refreshToken', res.refresh_token);
-          return true;
+          next.handle(request);
+          location.reload();
         },
           err => {
-            // console.log("refresh token also results into error ",err);
+            // console.log('refresh token also results into error ', err);
             this.logout();
           });
     } else {
       // console.log("Cant use Refresh token");
       this._router.navigate(['/']);
     }
-    return false;
+  }
+
+  callRefreshToken(): Observable<any> {
+    localStorage.removeItem('token');
+    // console.log("refresh token called ", localStorage.getItem("refreshToken"));
+
+    const data = {
+      'grant_type': 'refresh_token',
+      'client_id': this._client_id,
+      'client_secret': this._client_secret,
+      'refresh_token': localStorage.getItem('refreshToken')
+    };
+
+    return this.http.post<any>(this._loginUrl, this.getFormUrlEncoded(data), { headers: this.tokenHeader })
+      .pipe(catchError(this.errorHandler));
   }
 
   isLoggedIn() {
