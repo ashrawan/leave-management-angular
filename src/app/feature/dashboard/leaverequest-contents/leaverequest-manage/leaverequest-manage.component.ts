@@ -13,14 +13,13 @@ import { EmployeeLeave } from '../../model/EmployeeLeave';
 })
 export class LeaverequestManageComponent implements OnInit {
 
-  minDate: Date;
-
   create_leave_req_msg: string;
   public has_error = false;
 
   leaveTypes: Observable<any>;
   selectedLeaveType: LeaveType = null;
   leaveForm: FormGroup;
+  minDate: Date;
   submitted = false;
 
   constructor(private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService,

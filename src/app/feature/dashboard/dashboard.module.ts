@@ -1,3 +1,4 @@
+import { CoreModule } from './../../core/core.module';
 import { ReportService } from './services/report.service';
 import { EventService } from './services/event.service';
 import { DashCalendarComponent } from './dash-contents/calendar-contents/dash-calendar/dash-calendar.component';
@@ -12,7 +13,6 @@ import { EmployeeService } from './services/employee.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EmployeeListComponent } from './employee-contents/employee-list/employee-list.component';
 import { EmployeeMainComponent } from './employee-contents/employee-main/employee-main.component';
-import { NavigationComponent } from './../../core/navigation/navigation.component';
 import { DashboardRoutingModule } from './dashboard-routing/dashboard-routing.module';
 
 import { NgModule } from '@angular/core';
@@ -52,6 +52,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
   imports: [
     CommonModule,
     DashboardRoutingModule,
+    CoreModule,
     FormsModule,
     NgSelectModule,
     HttpClientModule,
@@ -66,7 +67,6 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     })
   ],
   declarations: [
-    NavigationComponent,
     MainLayoutComponent,
     DashHomeComponent,
     EmployeeMainComponent,

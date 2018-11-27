@@ -55,7 +55,7 @@ body {
 .table thead {
     cursor: pointer;
 }
-.table mat-icon {
+.mat-icon {
     vertical-align: middle;
 }
 .table-details {
@@ -99,4 +99,88 @@ body {
   } */
 
 
-  
+.custom-nav {
+    background-color: rgb(65, 112, 171);
+}
+
+.wrapper {
+    display: flex;
+    width: 100%;
+}
+
+#sidebar {
+    width: 250px;
+    position: fixed;
+    top: 54px;
+    left: 0;
+    height: 100vh;
+    z-index: 999;
+    background: rgb(92, 101, 136);
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar ul li a {
+    padding: 15px 30px;
+    font-size: 1em;
+    letter-spacing: 0.04em;
+    display: block;
+    color: #fff;
+    cursor: pointer;
+}
+
+#sidebar ul li a:hover {
+    text-decoration: none;
+    color: #fff;
+    background: #7386D5;
+}
+
+.sidebar-items .sidebar-header {
+    text-align: center;
+    font-size: 1.2em;
+    margin: 0;
+    padding: 8%;
+    font-weight: 400;
+    background-color: #8e97bd;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: calc(100% - 250px);
+    padding: 54px 15px;
+    min-height: 100vh;
+    transition: all 0.3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#content.active {
+    width: 100%;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media (max-width: 768px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #content {
+        width: 100%;
+    }
+    #content.active {
+        width: calc(100% - 250px);
+    }
+}

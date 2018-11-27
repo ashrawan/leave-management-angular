@@ -1,2 +1,8 @@
-<app-navigation></app-navigation>
-<router-outlet></router-outlet>
+<div class="wrapper">
+    <app-navnside-wrapper></app-navnside-wrapper>
+
+    <div id="content" [ngClass]="isOpen ? 'active' : ''">
+        <router-outlet></router-outlet>
+    </div>
+
+</div>

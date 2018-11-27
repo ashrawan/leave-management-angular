@@ -1,6 +1,6 @@
 <form [formGroup]="eventForm" (ngSubmit)="onSubmit()" class="mx-auto col-md-6 offset-md-4 form-box">
 
-    <div *ngIf="!!create_leave_req_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{create_leave_req_msg}}</div>
+    <div *ngIf="!!create_event_msg" [ngClass]="has_error ? 'alert alert-danger': 'alert alert-info'">{{create_event_msg}}</div>
   
     <h4 class="mb-3 form-title"> Create New Event </h4>
   

@@ -1,0 +1,19 @@
+<nav id="sidebar" [ngClass]="isOpen ? 'active' : ''">
+
+  <ul class="list-unstyled sidebar-items">
+    <p class="sidebar-header">Leave Management</p>
+    <li>
+      <a routerLink="/home/employees" routerLinkActive="active">Employee</a>
+    </li>
+    <li>
+      <a routerLink="/home/leaverequests" routerLinkActive="active">Leave Request</a>
+    </li>
+    <li>
+      <a routerLink="/home/leavetypes" routerLinkActive="active">Leave Type</a>
+    </li>
+    <li>
+      <a routerLink="/home/event" routerLinkActive="active">Event</a>
+    </li>
+  </ul>
+
+</nav>

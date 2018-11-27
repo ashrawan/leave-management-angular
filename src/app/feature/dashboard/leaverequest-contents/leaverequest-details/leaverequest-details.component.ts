@@ -2,6 +2,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { EmployeeLeaveService } from './../../services/employeeLeave.service';
 import { Component, OnInit } from '@angular/core';
+import { EmployeeLeave } from '../../model/EmployeeLeave';
 
 @Component({
   selector: 'app-leaverequest-details',
@@ -12,16 +13,15 @@ export class LeaverequestDetailsComponent implements OnInit {
 
   private id: number;
   private sub: any;
-  errorMsg;
+  errorMsg: String;
   isRequestEdit = false;
 
   isLeaveRequestSelected = false;
-  selectedLeaveRequest;
-  selected_leave_msg;
+  selectedLeaveRequest: EmployeeLeave;
+  selected_leave_msg: String;
   requestApproveForm: FormGroup;
-  approveRequest;
   has_error = false;
-  approve_leave_update_msg;
+  approve_leave_update_msg: String;
   submitted = false;
 
   constructor(private route: ActivatedRoute, private formBuilder: FormBuilder, private _employeeLeaveService: EmployeeLeaveService) { }
@@ -39,7 +39,7 @@ export class LeaverequestDetailsComponent implements OnInit {
 
   initRequestApproveForm() {
     this.requestApproveForm = this.formBuilder.group({
-      leaveId: [this.selectedLeaveRequest.leaveId],
+      leaveId: [this.selectedLeaveRequest.leaveID],
       deniedReason: [this.selectedLeaveRequest.deniedReason],
       status: [this.selectedLeaveRequest.status, Validators.required]
     });
@@ -81,8 +81,7 @@ export class LeaverequestDetailsComponent implements OnInit {
             this.selectedLeaveRequest = data;
             this.isLeaveRequestSelected = true;
             // console.log('selectedEmployee data: ', data);
-          },
-          error => {
+          }, error => {
             this.errorMsg = error;
             this.selected_leave_msg = 'Oops ! Can\'t load selected Leave Request';
           });

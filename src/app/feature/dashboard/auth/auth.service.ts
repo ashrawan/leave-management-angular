@@ -99,6 +99,7 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('refreshToken');
     localStorage.removeItem('role');
+    localStorage.clear();
     this._router.navigate(['/']);
     // location.reload();
   }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidebarService } from 'src/app/core/navigation-contents/service/sidebar.service';
 
 @Component({
   selector: 'app-main-layout',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MainLayoutComponent implements OnInit {
 
-  constructor() { }
+  isOpen = false;
+
+  constructor(private _sidebarService: SidebarService) { }
 
   ngOnInit() {
+    this._sidebarService.change.subscribe(isOpen => {
+      this.isOpen = isOpen;
+    });
   }
 
 }

@@ -28,27 +28,27 @@ export class EmployeeLeaveService {
       .pipe(catchError(this.errorHandler));
   }
 
-  getEmployeeLeaveById(id): Observable<EmployeeLeave[]> {
-    return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id)
+  getEmployeeLeaveById(id): Observable<EmployeeLeave> {
+    return this.http.get<EmployeeLeave>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id)
       .pipe(catchError(this.errorHandler));
   }
 
-  createEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave[]> {
-    return this.http.post<any>(Constant.API_ENDPOINT + '/rest/employee-leaves', EmployeeLeaveData)
+  createEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave> {
+    return this.http.post<EmployeeLeave>(Constant.API_ENDPOINT + '/rest/employee-leaves', EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 
-  updateEmployeeLeave(EmployeeLeaveData, id): Observable<EmployeeLeave[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id, EmployeeLeaveData)
+  updateEmployeeLeave(EmployeeLeaveData, id): Observable<EmployeeLeave> {
+    return this.http.put<EmployeeLeave>(Constant.API_ENDPOINT + '/rest/employee-leaves/' + id, EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 
-  approveEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave[]> {
-    return this.http.put<any>(Constant.API_ENDPOINT + '/rest/employee-leaves/approve-employee-leave', EmployeeLeaveData)
+  approveEmployeeLeave(EmployeeLeaveData): Observable<EmployeeLeave> {
+    return this.http.put<EmployeeLeave>(Constant.API_ENDPOINT + '/rest/employee-leaves/approve-employee-leave', EmployeeLeaveData)
       .pipe(catchError(this.errorHandler));
   }
 
-  getEmployeeLeavesBetweenDate(startDate, endDate): Observable<any> {
+  getEmployeeLeavesBetweenDate(startDate, endDate): Observable<EmployeeLeave[]> {
     return this.http.get<EmployeeLeave[]>(Constant.API_ENDPOINT + '/rest/employee-leaves/byDate',
     {
       params: {

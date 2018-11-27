@@ -1,0 +1,23 @@
+<nav class="navbar fixed-top custom-nav">
+
+  <div>
+    <button type="button" class="btn btn-info" (click)="toggleSidebar()">
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <a class="navbar-brand text-white" routerLink="/home">&nbsp; Dashboard</a>
+  </div>
+
+  <div>
+    <button mat-flat-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>&nbsp;username
+    </button>
+    <mat-menu #menu="matMenu" class="text-center">
+      <mat-list>
+        <mat-list-item> <a routerLink="/home/profile" routerLinkActive="active">Profile</a> </mat-list-item>
+        <mat-list-item> <span class="btn btn-sm btn-danger" (click)="_auth.logout()">Logout</span> </mat-list-item>
+      </mat-list>
+    </mat-menu>
+  </div>
+
+</nav>

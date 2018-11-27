@@ -19,6 +19,7 @@ export class DashHomeComponent implements OnInit {
       .subscribe(
         res => {
           const role = res.role;
+          console.log(res);
           localStorage.setItem('role', role);
         },
         error => {
