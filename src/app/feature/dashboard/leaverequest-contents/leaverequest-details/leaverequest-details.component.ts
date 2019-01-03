@@ -39,7 +39,7 @@ export class LeaverequestDetailsComponent implements OnInit {
 
   initRequestApproveForm() {
     this.requestApproveForm = this.formBuilder.group({
-      leaveId: [this.selectedLeaveRequest.leaveID],
+      leaveId: [this.selectedLeaveRequest.leaveId],
       deniedReason: [this.selectedLeaveRequest.deniedReason],
       status: [this.selectedLeaveRequest.status, Validators.required]
     });
@@ -59,7 +59,10 @@ export class LeaverequestDetailsComponent implements OnInit {
     if (this.requestApproveForm.invalid) {
       return;
     }
-    // console.log("success ", this.requestApproveForm.value);
+    console.log('success ', this.requestApproveForm.value);
+    // this.requestApproveForm.patchValue({
+    //   leaveId
+    // });
     this._employeeLeaveService.approveEmployeeLeave(this.requestApproveForm.value).subscribe(res => {
       this.has_error = false;
       this.approve_leave_update_msg = 'Successfully Submitted';

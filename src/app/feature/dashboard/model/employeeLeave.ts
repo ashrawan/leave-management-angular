@@ -2,7 +2,7 @@ import { Employee } from './employee';
 import { LeaveType } from './leaveType';
 
 export class EmployeeLeave {
-    leaveID: number;
+    leaveId: number;
     employeeDTO: Employee;
     leaveTypeDTO: LeaveType;
     leaveReason: string;
@@ -14,7 +14,7 @@ export class EmployeeLeave {
     createdAt: Date;
     reviewedBy: Employee;
 
-    constructor(leaveID) {
-        this.leaveID = leaveID;
+    constructor(leaveId) {
+        this.leaveId = leaveId;
     }
 }
